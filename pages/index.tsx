@@ -1,8 +1,10 @@
 import type { NextPage } from 'next'
 
+import { SquareCard } from '../components/Card/SquareCard'
+
 const Home: NextPage = () => {
   return (
-    <h1>Hello World</h1>
+    <SquareCard pokemonName="charmander" />
   )
 }
 
