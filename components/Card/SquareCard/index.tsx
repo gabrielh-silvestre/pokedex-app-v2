@@ -2,6 +2,8 @@ import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { Pokemon } from 'pokenode-ts';
 
+import NotFoundPic from '../../../public/not_found.png';
+
 import { pokemonClient } from '../../../src/PokemonClient';
 
 import {
@@ -32,7 +34,8 @@ function SquareCard({ pokemonName }: ISquareCardProps) {
         <ImageContainer>
           <Image
             src={
-              pokemon.sprites.other['official-artwork'].front_default as string
+              pokemon.sprites.other['official-artwork'].front_default ||
+              NotFoundPic
             }
             alt={pokemon.name}
             width={100}
@@ -46,7 +49,7 @@ function SquareCard({ pokemonName }: ISquareCardProps) {
           <PokemonName>{pokemon.name}</PokemonName>
 
           <TypesContainer>
-            {pokemon.types.map((type) => (
+            {pokemon.types.map((type) => (  // TODO
               <span key={type.type.name}>{type.type.name}</span>
             ))}
             {/* <p>Tipo</p>
