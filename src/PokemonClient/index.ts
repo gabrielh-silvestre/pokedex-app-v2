@@ -1,5 +1,6 @@
-import { PokemonClient } from 'pokenode-ts';
+import { GameClient, PokemonClient } from 'pokenode-ts';
 
 const pokemonClient = new PokemonClient();
+const gameClient = new GameClient();
 
-export { pokemonClient };
+export { pokemonClient, gameClient };
