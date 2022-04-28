@@ -1,16 +1,19 @@
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { NamedAPIResource } from 'pokenode-ts';
 
 import { pokemonClient } from '../../../src/PokemonClient';
 
-import { SquareCard } from '../../Card/SquareCard';
+import { SquareCardMemo } from '../../Card/SquareCard';
 
 import { shuffleArr } from '../../../src/utils';
+import { listContext } from '../../../src/Contexts/ListContext/context';
 
 function InfiniteList() {
   const [pokemonList, setPokemonList] = useState<NamedAPIResource[]>([]);
   const [pagination, setPagination] = useState({ offset: 0, limit: 20 });
+
+  const { solvedList, waitAll } = useContext(listContext);
 
   const increaseLimit = () => {
     setPagination((prev) => ({ ...prev, offset: prev.offset + 40 }));
@@ -28,9 +31,13 @@ function InfiniteList() {
     setPokemonList((prev) => [...prev, ...shuffledPokemonList]);
   };
 
+  useEffect(() => {
+    waitAll(pokemonList);
+  }, [pokemonList, waitAll]);
+
   return (
     <InfiniteScroll
-      dataLength={pokemonList.length}
+      dataLength={solvedList.length}
       next={() => {
         increaseLimit();
         fetchPokemons();
@@ -41,10 +48,8 @@ function InfiniteList() {
       endMessage={<p>It is all</p>}
       className="container z-0 scroll-hidden sm:grid sm:grid-cols-2 sm:gap-x-4 lg:grid-cols-3 2xl:grid-cols-4"
     >
-      {pokemonList.length > 0 &&
-        pokemonList.map(({ name }) => (
-          <SquareCard key={name} pokemonName={name} />
-        ))}
+      {solvedList.length > 0 &&
+        solvedList.map((p) => <SquareCardMemo key={p.name} {...p} />)}
     </InfiniteScroll>
   );
 }
