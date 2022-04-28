@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { NamedAPIResource } from 'pokenode-ts';
 
 import { StaticList } from '../../components/List/StaticList';
+import { ListProvider } from '../../src/Contexts/ListContext';
 
 import { gameClient } from '../../src/PokemonClient';
 
@@ -30,7 +31,9 @@ const PokemonListByGeneration: NextPage<IListByGenerationProps> = ({
         />
       </Head>
       <main className="min-h-screen bg-gray-50">
-        <StaticList list={pokemonList} />
+        <ListProvider>
+          <StaticList list={pokemonList} />
+        </ListProvider>
       </main>
     </>
   );
