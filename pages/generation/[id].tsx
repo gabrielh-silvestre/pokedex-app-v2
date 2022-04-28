@@ -5,7 +5,7 @@ import { NamedAPIResource } from 'pokenode-ts';
 import { StaticList } from '../../components/List/StaticList';
 import { ListProvider } from '../../src/Contexts/ListContext';
 
-import { gameClient } from '../../src/clients/PokenNode';
+import { gameClient } from '../../src/clients/PokeNode';
 
 interface IListByGenerationProps {
   pokemonList: NamedAPIResource[];

@@ -3,7 +3,7 @@ import { NamedAPIResource } from 'pokenode-ts';
 
 import { CardData, ListContextProps } from '../../@types/types';
 
-import { pokemonClient } from '../../clients/PokenNode';
+import { pokemonClient } from '../../clients/PokeNode';
 
 import { listContext as Context } from './context';
 

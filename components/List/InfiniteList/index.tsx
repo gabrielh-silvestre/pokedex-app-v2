@@ -2,7 +2,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { useContext, useEffect, useState } from 'react';
 import { NamedAPIResource } from 'pokenode-ts';
 
-import { pokemonClient } from '../../../src/clients/PokenNode';
+import { pokemonClient } from '../../../src/clients/PokeNode';
 
 import { SquareCardMemo } from '../../Card/SquareCard';
 
