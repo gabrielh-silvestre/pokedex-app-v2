@@ -1,10 +1,7 @@
 import Image from 'next/image';
-import { useCallback, useEffect, useState } from 'react';
-import { Pokemon } from 'pokenode-ts';
+import { memo } from 'react';
 
-import NotFoundPic from '../../../public/not_found.png';
-
-import { pokemonClient } from '../../../src/PokemonClient';
+import { CardData } from '../../../src/@types/types';
 
 import {
   Container,
@@ -15,75 +12,45 @@ import {
   TypesContainer,
 } from './style';
 
-interface ISquareCardProps {
-  pokemonName: string;
-}
+import NotFoundPic from '../../../public/not_found.png';
 
-function SquareCard({ pokemonName }: ISquareCardProps) {
-  const [pokemon, setPokemon] = useState<Pokemon | null>(null);
-
-  const getPokemonBySpecie = useCallback(async () => {
-    const response = await pokemonClient.getPokemonSpeciesByName(pokemonName);
-    const defaultVariety = response.varieties.find(
-      ({ is_default }) => is_default
-    );
-
-    if (defaultVariety) {
-      const defaultPokemon = await pokemonClient.getPokemonByName(
-        defaultVariety.pokemon.name
-      );
-
-      setPokemon(defaultPokemon);
-    }
-  }, [pokemonName]);
-
-  useEffect(() => {
-    pokemonClient
-      .getPokemonByName(pokemonName)
-      .then((pokemon) => {
-        setPokemon(pokemon);
-      })
-      .catch((err) => {
-        getPokemonBySpecie();
-      });
-  }, [pokemonName, getPokemonBySpecie]);
-
+function SquareCardComponent({ id, name, types, sprites }: CardData) {
   return (
-    pokemon && (
-      <Container>
-        <ImageContainer>
-          <Image
-            src={
-              pokemon.sprites.other['official-artwork'].front_default ||
-              NotFoundPic
-            }
-            alt={pokemon.name}
-            width={100}
-            height={100}
-            priority
-          />
-        </ImageContainer>
+    <Container>
+      <ImageContainer>
+        <Image
+          src={sprites.other['official-artwork'].front_default || NotFoundPic}
+          alt={name}
+          width={100}
+          height={100}
+          priority
+        />
+      </ImageContainer>
 
-        <ContentContainer>
-          <PokemonID>{pokemon.id}</PokemonID>
+      <ContentContainer>
+        <PokemonID>{id}</PokemonID>
 
-          <PokemonName>{pokemon.name}</PokemonName>
+        <PokemonName>{name}</PokemonName>
 
-          <TypesContainer>
-            {pokemon.types.map(
-              (
-                type // TODO
-              ) => (
-                <span key={type.type.name}>{type.type.name}</span>
-              )
-            )}
-            {/* <p>Tipo</p>
-            <p>Tipo</p> */}
-          </TypesContainer>
-        </ContentContainer>
-      </Container>
-    )
+        <TypesContainer>
+          {types.map(
+            (
+              type // TODO
+            ) => (
+              <span key={type.type.name}>{type.type.name}</span>
+            )
+          )}
+        </TypesContainer>
+      </ContentContainer>
+    </Container>
   );
 }
 
-export { SquareCard };
+const SquareCardMemo = memo(
+  SquareCardComponent,
+  (prev, next) => prev.name === next.name
+);
+
+export { SquareCardMemo, SquareCardComponent as SquareCard };
+
+// export const SquareCard = (infinite?: boolean) => infinite ? SquareCardMemo : SquareCardComponent;
