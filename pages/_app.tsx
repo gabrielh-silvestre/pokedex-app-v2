@@ -4,10 +4,10 @@ import { Header } from '../components/Header';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <>
+    <div className="h-screen flex flex-col bg-gray-50">
       <Header />
       <Component {...pageProps} />
-    </>
+    </div>
   );
 }
 

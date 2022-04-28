@@ -30,11 +30,11 @@ const PokemonListByType: NextPage<IListByTypeProps> = ({
           content={`List of all ${typeName} type pokemon`}
         />
       </Head>
-      <main className="min-h-screen bg-gray-50">
+      <>
         <ListProvider>
           <StaticList list={pokemonList} />
         </ListProvider>
-      </main>
+      </>
     </>
   );
 };
