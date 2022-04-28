@@ -60,6 +60,7 @@ function SquareCard({ pokemonName }: ISquareCardProps) {
             alt={pokemon.name}
             width={100}
             height={100}
+            priority
           />
         </ImageContainer>
 

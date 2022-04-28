@@ -1,38 +1,39 @@
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { useCallback, useEffect, useState } from 'react';
+import { useState } from 'react';
 import { NamedAPIResource } from 'pokenode-ts';
 
 import { pokemonClient } from '../../../src/PokemonClient';
 
 import { SquareCard } from '../../Card/SquareCard';
 
+import { shuffleArr } from '../../../src/utils';
+
 function InfiniteList() {
   const [pokemonList, setPokemonList] = useState<NamedAPIResource[]>([]);
   const [pagination, setPagination] = useState({ offset: 0, limit: 20 });
 
   const increaseLimit = () => {
-    setPagination((prev) => ({ ...prev, limit: prev.limit + 20 }));
+    setPagination((prev) => ({ ...prev, offset: prev.offset + 40 }));
   };
 
-  const fetchPokemons = useCallback(async () => {
+  const fetchPokemons = async () => {
     const { offset, limit } = pagination;
 
     const response = await pokemonClient.listPokemons(offset, limit);
 
     const pokemonList = response.results as NamedAPIResource[];
 
-    setPokemonList(pokemonList);
-  }, [pagination]);
+    const shuffledPokemonList = shuffleArr(pokemonList);
 
-  useEffect(() => {
-    fetchPokemons();
-  }, [fetchPokemons, pagination]);
+    setPokemonList((prev) => [...prev, ...shuffledPokemonList]);
+  };
 
   return (
     <InfiniteScroll
       dataLength={pokemonList.length}
       next={() => {
         increaseLimit();
+        fetchPokemons();
       }}
       scrollThreshold={0.9}
       hasMore={true}
