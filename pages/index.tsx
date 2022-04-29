@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
+
 import { InfiniteList } from '../components/List/InfiniteList';
-import { ListProvider } from '../src/Contexts/ListContext';
+import { ListProvider } from '../src/contexts/ListContext';
 
 const Home: NextPage = () => {
   return (
