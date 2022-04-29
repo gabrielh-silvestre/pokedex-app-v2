@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { getAuth } from 'firebase/auth';
+import { useSignInWithGithub } from 'react-firebase-hooks/auth';
 import { AiFillGithub } from 'react-icons/ai';
 import { MdOutlineCatchingPokemon } from 'react-icons/md';
 
-import { singIn } from '../../../src/services/Auth';
+import { app } from '../../../src/clients/Firebase';
 
 import {
   AuthButton,
@@ -17,11 +19,29 @@ import {
   SubmitButton,
   TextInput,
 } from './style';
+import { useRouter } from 'next/router';
 
 function SingInForm() {
+  const { push } = useRouter();
+  const [signInWithGithub, user] = useSignInWithGithub(
+    getAuth(app)
+  );
+
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
   };
+
+  const signIn = () => {
+    signInWithGithub();
+  };
+
+  useEffect(() => {
+    if (user) {
+      push('/');
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
   return (
     <>
@@ -56,7 +76,7 @@ function SingInForm() {
               <DivisorText>OR</DivisorText>
             </Divisor>
 
-            <AuthButton type="button" onClick={singIn}>
+            <AuthButton type="button" onClick={signIn}>
               <AiFillGithub className="w-6 h-6 mr-2" /> Continue with GitHub
             </AuthButton>
           </form>
