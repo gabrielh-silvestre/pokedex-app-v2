@@ -6,17 +6,16 @@ import { pokemonClient } from '../../../src/clients/PokeNode';
 
 import { SquareCardMemo } from '../../Card/SquareCard';
 
-import { shuffleArr } from '../../../src/utils';
 import { listContext } from '../../../src/contexts/ListContext/context';
 
 function InfiniteList() {
   const [pokemonList, setPokemonList] = useState<NamedAPIResource[]>([]);
-  const [pagination, setPagination] = useState({ offset: 0, limit: 20 });
+  const [pagination, setPagination] = useState({ offset: 0, limit: 40 });
 
   const { solvedList, getByName } = useContext(listContext);
 
   const increaseLimit = () => {
-    setPagination((prev) => ({ ...prev, offset: prev.offset + 40 }));
+    setPagination((prev) => ({ ...prev, limit: prev.limit + 40 }));
   };
 
   const fetchPokemons = async () => {
@@ -26,10 +25,14 @@ function InfiniteList() {
 
     const pokemonList = response.results as NamedAPIResource[];
 
-    const shuffledPokemonList = shuffleArr(pokemonList);
-
-    setPokemonList((prev) => [...prev, ...shuffledPokemonList]);
+    setPokemonList(pokemonList);
   };
+
+  useEffect(() => {
+    fetchPokemons();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pagination.limit]);
 
   useEffect(() => {
     getByName(pokemonList);
@@ -42,7 +45,6 @@ function InfiniteList() {
       dataLength={solvedList.length}
       next={() => {
         increaseLimit();
-        fetchPokemons();
       }}
       scrollThreshold={0.9}
       hasMore={true}
