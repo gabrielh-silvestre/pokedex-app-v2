@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { NamedAPIResource } from 'pokenode-ts';
 
 import { StaticList } from '../../components/List/StaticList';
-import { ListProvider } from '../../src/Contexts/ListContext';
+import { ListProvider } from '../../src/contexts/ListContext';
 
 import { gameClient } from '../../src/clients/PokeNode';
 
@@ -32,7 +32,7 @@ const PokemonListByGeneration: NextPage<IListByGenerationProps> = ({
       </Head>
       <>
         <ListProvider>
-          <StaticList list={pokemonList} />
+          <StaticList list={pokemonList} species />
         </ListProvider>
       </>
     </>
@@ -43,14 +43,11 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const { id } = context.query;
 
   const response = await gameClient.getGenerationById(Number(id));
-  const generationName = response.names.find(
-    ({ language }) => language.name === 'en'
-  )?.name;
 
   return {
     props: {
       pokemonList: response.pokemon_species,
-      generationName,
+      generationName: response.name,
     },
   };
 };
