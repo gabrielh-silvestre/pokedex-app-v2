@@ -1,6 +1,10 @@
 import React, { useEffect } from 'react';
+import { useRouter } from 'next/router';
+
 import { getAuth } from 'firebase/auth';
+import { doc, getFirestore, setDoc } from 'firebase/firestore';
 import { useSignInWithGithub } from 'react-firebase-hooks/auth';
+
 import { AiFillGithub } from 'react-icons/ai';
 import { MdOutlineCatchingPokemon } from 'react-icons/md';
 
@@ -19,13 +23,10 @@ import {
   SubmitButton,
   TextInput,
 } from './style';
-import { useRouter } from 'next/router';
 
 function SingInForm() {
   const { push } = useRouter();
-  const [signInWithGithub, user] = useSignInWithGithub(
-    getAuth(app)
-  );
+  const [signInWithGithub, user] = useSignInWithGithub(getAuth(app));
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -37,7 +38,11 @@ function SingInForm() {
 
   useEffect(() => {
     if (user) {
-      push('/');
+      setDoc(doc(getFirestore(app), 'trainers', user.user.uid), {
+        username: user.user.displayName,
+      }).then(() => {
+        push('/');
+      });
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
