@@ -1,19 +1,18 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-import { getAuth } from 'firebase/auth';
-import { doc, getFirestore, setDoc } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
+
 import { useSignInWithGithub } from 'react-firebase-hooks/auth';
+import { useCollection } from 'react-firebase-hooks/firestore';
 
 import { AiFillGithub } from 'react-icons/ai';
 import { MdOutlineCatchingPokemon } from 'react-icons/md';
 
-import { app } from '../../../src/clients/Firebase';
+import { auth, db, trainersCollectionRef } from '../../../src/clients/Firebase';
 
 import {
   AuthButton,
-  CheckBox,
-  CheckBoxLabel,
   Container,
   ContentContainer,
   Divisor,
@@ -23,10 +22,13 @@ import {
   SubmitButton,
   TextInput,
 } from './style';
+import { Trainer } from '../../../src/models/Trainer';
 
 function SingInForm() {
   const { push } = useRouter();
-  const [signInWithGithub, user] = useSignInWithGithub(getAuth(app));
+
+  const [signInWithGithub, user] = useSignInWithGithub(auth);
+  const [trainers] = useCollection(trainersCollectionRef);
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -36,13 +38,27 @@ function SingInForm() {
     signInWithGithub();
   };
 
+  const userAlreadyExists = async () => {
+    if (user) {
+      return trainers?.docs.some(
+        (doc) => doc.data()?.username === user.user.displayName
+      );
+    }
+  };
+
+  const createUser = async () => {
+    const userExists = await userAlreadyExists();
+
+    if (!userExists && user) {
+      const { displayName, uid } = user.user;
+
+      setDoc(doc(db, 'trainers', uid), new Trainer(displayName, uid));
+    }
+  };
+
   useEffect(() => {
     if (user) {
-      setDoc(doc(getFirestore(app), 'trainers', user.user.uid), {
-        username: user.user.displayName,
-      }).then(() => {
-        push('/');
-      });
+      createUser().then(() => push('/'));
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -63,10 +79,10 @@ function SingInForm() {
             </Label>
 
             <OptionsContainer>
-              <CheckBoxLabel htmlFor="remberCheck">
+              {/* <CheckBoxLabel htmlFor="remberCheck">
                 <CheckBox type="checkbox" id="remberCheck" defaultChecked />
                 Remember me
-              </CheckBoxLabel>
+              </CheckBoxLabel> */}
               {/* <a
                 href="#!"
                 className="text-red-600 hover:text-red-700 focus:text-red-700 active:text-red-800 duration-200 transition ease-in-out"
