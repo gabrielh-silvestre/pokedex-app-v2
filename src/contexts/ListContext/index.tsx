@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { NamedAPIResource } from 'pokenode-ts';
+import { NamedAPIResource, Pokemon } from 'pokenode-ts';
 
 import { CardData, ListContextProps } from '../../@types/types';
 
@@ -12,7 +12,7 @@ import { serializeToListContext } from '../../utils/serializzers';
 const ListProvider = ({ children }: ListContextProps) => {
   const [solvedList, setSolvedList] = useState<CardData[]>([]);
 
-  const waitAll = useCallback(async (list: NamedAPIResource[]) => {
+  const getByName = useCallback(async (list: NamedAPIResource[]) => {
     const promises = list.map(async ({ name }) =>
       pokemonClient.getPokemonByName(name)
     );
@@ -23,9 +23,31 @@ const ListProvider = ({ children }: ListContextProps) => {
     setSolvedList(serialized);
   }, []);
 
+  const getBySpecie = useCallback(async (list: NamedAPIResource[]) => {
+    const speciesPromises = list.map(async ({ name }) =>
+      pokemonClient.getPokemonSpeciesByName(name)
+    );
+
+    const speciesResolved = await Promise.all(speciesPromises);
+
+    const pokemonsPromises = speciesResolved.map(async ({ varieties }) => {
+      const defaultSpecie = varieties.find(({ is_default }) => is_default);
+
+      if (defaultSpecie) {
+        return await pokemonClient.getPokemonByName(defaultSpecie.pokemon.name);
+      }
+    });
+
+    const pokemonsResolved = await Promise.all(pokemonsPromises);
+    const serialized = serializeToListContext(pokemonsResolved as Pokemon[]);
+
+    setSolvedList(serialized);
+  }, []);
+
   const context = {
     solvedList,
-    waitAll,
+    getByName,
+    getBySpecie,
   };
 
   return <Context.Provider value={context}>{children}</Context.Provider>;

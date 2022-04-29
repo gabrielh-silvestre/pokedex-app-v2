@@ -5,7 +5,8 @@ type CardData = Pick<Pokemon, 'id' | 'name' | 'types' | 'sprites'>;
 
 type ListContext = {
   solvedList: CardData[];
-  waitAll(list: NamedAPIResource[]): Promise<void>;
+  getByName(list: NamedAPIResource[]): Promise<void>;
+  getBySpecie(list: NamedAPIResource[]): Promise<void>
 };
 
 type ListContextProps = {
