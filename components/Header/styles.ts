@@ -57,7 +57,7 @@ const SiteLinks = tw.a`
 
   rounded-md
 
-  bg-red-600
+  bg-red-700
 
   text-gray-100
   text-lg

@@ -5,7 +5,7 @@ import { NamedAPIResource } from 'pokenode-ts';
 import { StaticList } from '../../components/List/StaticList';
 import { ListProvider } from '../../src/Contexts/ListContext';
 
-import { gameClient } from '../../src/PokemonClient';
+import { gameClient } from '../../src/clients/PokeNode';
 
 interface IListByGenerationProps {
   pokemonList: NamedAPIResource[];
@@ -30,11 +30,11 @@ const PokemonListByGeneration: NextPage<IListByGenerationProps> = ({
           content={`List of all ${generationName} pokemon`}
         />
       </Head>
-      <main className="min-h-screen bg-gray-50">
+      <>
         <ListProvider>
           <StaticList list={pokemonList} />
         </ListProvider>
-      </main>
+      </>
     </>
   );
 };

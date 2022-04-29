@@ -5,7 +5,7 @@ import { NamedAPIResource } from 'pokenode-ts';
 import { StaticList } from '../../components/List/StaticList';
 import { ListProvider } from '../../src/Contexts/ListContext';
 
-import { pokemonClient } from '../../src/PokemonClient';
+import { pokemonClient } from '../../src/clients/PokeNode';
 
 interface IListByTypeProps {
   pokemonList: NamedAPIResource[];
@@ -30,11 +30,11 @@ const PokemonListByType: NextPage<IListByTypeProps> = ({
           content={`List of all ${typeName} type pokemon`}
         />
       </Head>
-      <main className="min-h-screen bg-gray-50">
+      <>
         <ListProvider>
           <StaticList list={pokemonList} />
         </ListProvider>
-      </main>
+      </>
     </>
   );
 };

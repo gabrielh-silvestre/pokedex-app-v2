@@ -20,15 +20,17 @@ function Header() {
     <Container>
       <ContentContainer>
         <MainContainer>
-          <div className="w-10 lg:w-14">
-            <Image
-              src={PokeBallLogo}
-              alt="Pokeball"
-              width="100%"
-              height="100%"
-              layout="responsive"
-              objectFit="contain"
-            />
+          <div className="w-10 lg:w-14 cursor-pointer">
+            <Link passHref href="/">
+              <Image
+                src={PokeBallLogo}
+                alt="Pokeball"
+                width="100%"
+                height="100%"
+                layout="responsive"
+                objectFit="contain"
+              />
+            </Link>
           </div>
 
           <input
@@ -38,10 +40,14 @@ function Header() {
             // TODO: split into a new component
           />
 
-          <UserOptionsContainer>  {/* TODO: add functinality */}
+          <UserOptionsContainer>
+            {' '}
+            {/* TODO: add functinality */}
             <HiHeart className="w-10 h-10" />
             <GiBugNet className="w-10 h-10" />
-            <HiUserCircle className="w-10 h-10" />
+            <Link passHref href="/login">
+              <HiUserCircle className="w-10 h-10 cursor-pointer" />
+            </Link>
           </UserOptionsContainer>
         </MainContainer>
 
