@@ -7,13 +7,13 @@ import { pokemonClient } from '../../../src/clients/PokeNode';
 import { SquareCardMemo } from '../../Card/SquareCard';
 
 import { shuffleArr } from '../../../src/utils';
-import { listContext } from '../../../src/Contexts/ListContext/context';
+import { listContext } from '../../../src/contexts/ListContext/context';
 
 function InfiniteList() {
   const [pokemonList, setPokemonList] = useState<NamedAPIResource[]>([]);
   const [pagination, setPagination] = useState({ offset: 0, limit: 20 });
 
-  const { solvedList, waitAll } = useContext(listContext);
+  const { solvedList, getByName } = useContext(listContext);
 
   const increaseLimit = () => {
     setPagination((prev) => ({ ...prev, offset: prev.offset + 40 }));
@@ -32,8 +32,10 @@ function InfiniteList() {
   };
 
   useEffect(() => {
-    waitAll(pokemonList);
-  }, [pokemonList, waitAll]);
+    getByName(pokemonList);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pokemonList]);
 
   return (
     <InfiniteScroll
