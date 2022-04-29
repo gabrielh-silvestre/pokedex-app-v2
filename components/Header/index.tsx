@@ -14,7 +14,6 @@ import {
 } from './styles';
 
 import PokeBallLogo from '../../public/pokeball.png';
-import { Fragment } from 'react';
 
 function Header() {
   return (
