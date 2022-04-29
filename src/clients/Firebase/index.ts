@@ -1,13 +1,4 @@
-import { initializeApp, getApp, getApps, FirebaseApp } from 'firebase/app';
+import { app } from './app';
+import { auth, db, trainersCollectionRef } from './references';
 
-import { firebaseConfig } from './config';
-
-let app: FirebaseApp;
-
-if (getApps().length) {
-  app = getApp();
-} else {
-  app = initializeApp(firebaseConfig);
-}
-
-export { app };
+export { app, auth, db, trainersCollectionRef };
