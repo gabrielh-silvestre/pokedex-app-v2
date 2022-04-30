@@ -15,18 +15,10 @@ type ListContext = {
   getBySpecie(list: NamedAPIResource[]): Promise<void>;
 };
 
-type ListContextProps = {
-  children: ReactNode;
-};
-
 type AuthContext = {
   user: User | null | undefined;
   signInWithGithub: any;
   signOut: any;
-};
-
-type AuthContextProps = {
-  children: ReactNode;
 };
 
 type FavoriteContext = {
@@ -42,9 +34,7 @@ type FavoriteContextProps = ContextProviderProps & {
 export type {
   CardData,
   ContextProviderProps,
-  ListContextProps,
   ListContext,
-  AuthContextProps,
   AuthContext,
   FavoriteContext,
   FavoriteContextProps,

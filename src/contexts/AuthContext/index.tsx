@@ -3,7 +3,7 @@ import { signOut } from 'firebase/auth';
 import { doc, getDocFromServer, setDoc } from 'firebase/firestore';
 import { useAuthState, useSignInWithGithub } from 'react-firebase-hooks/auth';
 
-import { AuthContextProps } from '../../@types/types';
+import { ContextProviderProps } from '../../@types/types';
 
 import { auth, db } from '../../clients/Firebase';
 
@@ -16,7 +16,7 @@ const useAuth = () => {
   return context;
 };
 
-const AuthProvider = ({ children }: AuthContextProps) => {
+const AuthProvider = ({ children }: ContextProviderProps) => {
   const [user] = useAuthState(auth);
   const [signInWithGithub] = useSignInWithGithub(auth);
 
