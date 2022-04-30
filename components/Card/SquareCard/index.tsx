@@ -3,9 +3,12 @@ import { memo } from 'react';
 
 import { CardData } from '../../../src/@types/types';
 
+import { FavoriteButton } from '../../Button/FavoriteButton';
+
 import {
   Container,
   ContentContainer,
+  FavoriteButtonContainer,
   ImageContainer,
   PokemonID,
   PokemonName,
@@ -42,6 +45,9 @@ function SquareCardComponent({ id, name, types, sprites }: CardData) {
           )}
         </TypesContainer>
       </ContentContainer>
+      <FavoriteButtonContainer>
+        <FavoriteButton pokemonName={name} />
+      </FavoriteButtonContainer>
     </Container>
   );
 }

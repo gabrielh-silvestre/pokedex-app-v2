@@ -1,6 +1,9 @@
 import tw from 'tailwind-styled-components';
 
 const Container = tw.button`
+  w-full
+  h-full
+
   text-red-600
 
   transition

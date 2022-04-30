@@ -70,6 +70,15 @@ const TypesContainer = tw.div`
   text-xs
 `;
 
+const FavoriteButtonContainer = tw.div`
+  w-9
+  h-9
+
+  absolute
+  right-2
+  top-2
+`;
+
 export {
   Container,
   ImageContainer,
@@ -77,4 +86,5 @@ export {
   PokemonID,
   PokemonName,
   TypesContainer,
+  FavoriteButtonContainer,
 };
