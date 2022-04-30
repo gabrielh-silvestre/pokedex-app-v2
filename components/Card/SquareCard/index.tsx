@@ -3,6 +3,8 @@ import { memo } from 'react';
 
 import { CardData } from '../../../src/@types/types';
 
+import { capitalize } from '../../../src/utils';
+
 import { FavoriteButton } from '../../Button/FavoriteButton';
 
 import {
@@ -30,9 +32,9 @@ function SquareCardComponent({ id, name, types, sprites }: CardData) {
       </ImageContainer>
 
       <ContentContainer>
-        <PokemonID>{id}</PokemonID>
+        <PokemonID>Nº {id}</PokemonID>
 
-        <PokemonName>{name}</PokemonName>
+        <PokemonName>{capitalize(name)}</PokemonName>
 
         <TypesContainer>
           {types.map(
