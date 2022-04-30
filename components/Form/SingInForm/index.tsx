@@ -1,15 +1,10 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-import { doc, setDoc } from 'firebase/firestore';
-
-import { useSignInWithGithub } from 'react-firebase-hooks/auth';
-import { useCollection } from 'react-firebase-hooks/firestore';
-
 import { AiFillGithub } from 'react-icons/ai';
 import { MdOutlineCatchingPokemon } from 'react-icons/md';
 
-import { auth, db, trainersCollectionRef } from '../../../src/clients/Firebase';
+import { useAuth } from '../../../src/contexts/AuthContext';
 
 import {
   AuthButton,
@@ -22,13 +17,10 @@ import {
   SubmitButton,
   TextInput,
 } from './style';
-import { Trainer } from '../../../src/models/Trainer';
 
 function SingInForm() {
   const { push } = useRouter();
-
-  const [signInWithGithub, user] = useSignInWithGithub(auth);
-  const [trainers] = useCollection(trainersCollectionRef);
+  const { signInWithGithub, user } = useAuth();
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -38,27 +30,9 @@ function SingInForm() {
     signInWithGithub();
   };
 
-  const userAlreadyExists = async () => {
-    if (user) {
-      return trainers?.docs.some(
-        (doc) => doc.data()?.username === user.user.displayName
-      );
-    }
-  };
-
-  const createUser = async () => {
-    const userExists = await userAlreadyExists();
-
-    if (!userExists && user) {
-      const { displayName, uid } = user.user;
-
-      setDoc(doc(db, 'trainers', uid), new Trainer(displayName, uid));
-    }
-  };
-
   useEffect(() => {
     if (user) {
-      createUser().then(() => push('/'));
+      push('/');
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
