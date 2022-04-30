@@ -26,7 +26,6 @@ function SquareCardComponent({ id, name, types, sprites }: CardData) {
           alt={name}
           width={100}
           height={100}
-          priority
         />
       </ImageContainer>
 
