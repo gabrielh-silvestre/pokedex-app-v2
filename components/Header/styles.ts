@@ -55,7 +55,7 @@ const SiteLinks = tw.a`
   py-1
   mx-3
 
-  rounded-md
+  rounded
 
   bg-red-700
 

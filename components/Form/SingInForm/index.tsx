@@ -1,15 +1,13 @@
 import React, { useEffect } from 'react';
-import { getAuth } from 'firebase/auth';
-import { useSignInWithGithub } from 'react-firebase-hooks/auth';
+import { useRouter } from 'next/router';
+
 import { AiFillGithub } from 'react-icons/ai';
 import { MdOutlineCatchingPokemon } from 'react-icons/md';
 
-import { app } from '../../../src/clients/Firebase';
+import { useAuth } from '../../../src/contexts/AuthContext';
 
 import {
   AuthButton,
-  CheckBox,
-  CheckBoxLabel,
   Container,
   ContentContainer,
   Divisor,
@@ -19,13 +17,10 @@ import {
   SubmitButton,
   TextInput,
 } from './style';
-import { useRouter } from 'next/router';
 
 function SingInForm() {
   const { push } = useRouter();
-  const [signInWithGithub, user] = useSignInWithGithub(
-    getAuth(app)
-  );
+  const { signInWithGithub, user } = useAuth();
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -58,10 +53,10 @@ function SingInForm() {
             </Label>
 
             <OptionsContainer>
-              <CheckBoxLabel htmlFor="remberCheck">
+              {/* <CheckBoxLabel htmlFor="remberCheck">
                 <CheckBox type="checkbox" id="remberCheck" defaultChecked />
                 Remember me
-              </CheckBoxLabel>
+              </CheckBoxLabel> */}
               {/* <a
                 href="#!"
                 className="text-red-600 hover:text-red-700 focus:text-red-700 active:text-red-800 duration-200 transition ease-in-out"

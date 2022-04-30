@@ -3,7 +3,9 @@ import { useContext, useEffect } from 'react';
 
 import { SquareCard } from '../../Card/SquareCard';
 
+import { useAuth } from '../../../src/contexts/AuthContext';
 import { listContext } from '../../../src/contexts/ListContext/context';
+import { FavoriteProvider } from '../../../src/contexts/FavoriteContext';
 
 import { Container } from './styles';
 
@@ -14,6 +16,7 @@ interface IStaticListProps {
 
 function StaticList({ list, species }: IStaticListProps) {
   const { solvedList, getByName, getBySpecie } = useContext(listContext);
+  const { user } = useAuth();
 
   useEffect(() => {
     species ? getBySpecie(list) : getByName(list);
@@ -23,9 +26,11 @@ function StaticList({ list, species }: IStaticListProps) {
 
   return (
     <Container>
-      {solvedList.map((p) => (
-        <SquareCard key={p.name} {...p} />
-      ))}
+      <FavoriteProvider user={user}>
+        {solvedList.map((p) => (
+          <SquareCard key={p.name} {...p} />
+        ))}
+      </FavoriteProvider>
     </Container>
   );
 }

@@ -2,10 +2,11 @@ import type { GetServerSideProps, NextPage } from 'next';
 import Head from 'next/head';
 import { NamedAPIResource } from 'pokenode-ts';
 
+import { pokemonClient } from '../../src/clients/PokeNode';
+import { capitalize } from '../../src/utils';
+
 import { StaticList } from '../../components/List/StaticList';
 import { ListProvider } from '../../src/contexts/ListContext';
-
-import { pokemonClient } from '../../src/clients/PokeNode';
 
 interface IListByTypeProps {
   pokemonList: NamedAPIResource[];
@@ -19,7 +20,7 @@ const PokemonListByType: NextPage<IListByTypeProps> = ({
   return (
     <>
       <Head>
-        <title>Pokemon | {typeName}</title>
+        <title>Pokemon | {capitalize(typeName)}</title>
         <meta
           name="description"
           content={`List of all ${typeName} type pokemon`}

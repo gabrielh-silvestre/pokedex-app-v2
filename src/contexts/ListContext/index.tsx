@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import { NamedAPIResource, Pokemon } from 'pokenode-ts';
 
-import { CardData, ListContextProps } from '../../@types/types';
+import { CardData, ContextProviderProps } from '../../@types/types';
 
 import { pokemonClient } from '../../clients/PokeNode';
 
@@ -9,7 +9,7 @@ import { listContext as Context } from './context';
 
 import { serializeToListContext } from '../../utils/serializzers';
 
-const ListProvider = ({ children }: ListContextProps) => {
+const ListProvider = ({ children }: ContextProviderProps) => {
   const [solvedList, setSolvedList] = useState<CardData[]>([]);
 
   const getByName = useCallback(async (list: NamedAPIResource[]) => {

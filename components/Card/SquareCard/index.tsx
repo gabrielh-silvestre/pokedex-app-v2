@@ -3,9 +3,14 @@ import { memo } from 'react';
 
 import { CardData } from '../../../src/@types/types';
 
+import { capitalize } from '../../../src/utils';
+
+import { FavoriteButton } from '../../Button/FavoriteButton';
+
 import {
   Container,
   ContentContainer,
+  FavoriteButtonContainer,
   ImageContainer,
   PokemonID,
   PokemonName,
@@ -23,14 +28,13 @@ function SquareCardComponent({ id, name, types, sprites }: CardData) {
           alt={name}
           width={100}
           height={100}
-          priority
         />
       </ImageContainer>
 
       <ContentContainer>
-        <PokemonID>{id}</PokemonID>
+        <PokemonID>Nº {id}</PokemonID>
 
-        <PokemonName>{name}</PokemonName>
+        <PokemonName>{capitalize(name)}</PokemonName>
 
         <TypesContainer>
           {types.map(
@@ -42,6 +46,9 @@ function SquareCardComponent({ id, name, types, sprites }: CardData) {
           )}
         </TypesContainer>
       </ContentContainer>
+      <FavoriteButtonContainer>
+        <FavoriteButton pokemonName={name} />
+      </FavoriteButtonContainer>
     </Container>
   );
 }
