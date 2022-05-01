@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { User } from 'firebase/auth';
 
-import { NamedAPIResource, Pokemon } from 'pokenode-ts';
+import { Pokemon } from 'pokenode-ts';
 
 type CardData = Pick<Pokemon, 'id' | 'name' | 'types' | 'sprites'>;
 
@@ -11,8 +11,8 @@ type ContextProviderProps = {
 
 type ListContext = {
   solvedList: CardData[];
-  getByName(list: NamedAPIResource[]): Promise<void>;
-  getBySpecie(list: NamedAPIResource[]): Promise<void>;
+  getByName(list: string[]): Promise<void>;
+  getBySpecie(list: string[]): Promise<void>;
 };
 
 type AuthContext = {

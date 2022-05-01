@@ -1,4 +1,3 @@
-import { NamedAPIResource } from 'pokenode-ts';
 import { useContext, useEffect } from 'react';
 
 import { SquareCard } from '../../Card/SquareCard';
@@ -10,7 +9,7 @@ import { FavoriteProvider } from '../../../src/contexts/FavoriteContext';
 import { Container } from './styles';
 
 interface IStaticListProps {
-  list: NamedAPIResource[];
+  list: string[];
   species?: boolean;
 }
 

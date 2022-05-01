@@ -11,7 +11,7 @@ import { listContext } from '../../../src/contexts/ListContext/context';
 import { FavoriteProvider } from '../../../src/contexts/FavoriteContext';
 
 function InfiniteList() {
-  const [pokemonList, setPokemonList] = useState<NamedAPIResource[]>([]);
+  const [pokemonList, setPokemonList] = useState<string[]>([]);
   const [pagination, setPagination] = useState({ offset: 0, limit: 40 });
 
   const { solvedList, getByName } = useContext(listContext);
@@ -27,8 +27,9 @@ function InfiniteList() {
     const response = await pokemonClient.listPokemons(offset, limit);
 
     const pokemonList = response.results as NamedAPIResource[];
+    const serialized = pokemonList.map(({ name }) => name);
 
-    setPokemonList(pokemonList);
+    setPokemonList(serialized);
   };
 
   useEffect(() => {
