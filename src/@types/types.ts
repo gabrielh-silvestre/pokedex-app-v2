@@ -3,14 +3,19 @@ import { User } from 'firebase/auth';
 
 import { Pokemon } from 'pokenode-ts';
 
-type CardData = Pick<Pokemon, 'id' | 'name' | 'types' | 'sprites'>;
+type SquareCardData = Pick<Pokemon, 'id' | 'name' | 'types' | 'sprites'>;
+
+type SlimCardData = {
+  title: string;
+  description?: string;
+};
 
 type ContextProviderProps = {
   children: ReactNode;
 };
 
 type ListContext = {
-  solvedList: CardData[];
+  solvedList: SquareCardData[];
   getByName(list: string[]): Promise<void>;
   getBySpecie(list: string[]): Promise<void>;
 };
@@ -32,7 +37,8 @@ type FavoriteContextProps = ContextProviderProps & {
 };
 
 export type {
-  CardData,
+  SlimCardData,
+  SquareCardData,
   ContextProviderProps,
   ListContext,
   AuthContext,
