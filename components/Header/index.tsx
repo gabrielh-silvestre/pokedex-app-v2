@@ -43,8 +43,10 @@ function Header() {
           <UserOptionsContainer>
             {' '}
             {/* TODO: add functinality */}
-            <HiHeart className="w-10 h-10" />
-            <GiBugNet className="w-10 h-10" />
+            <Link passHref href="/favorites">
+              <HiHeart className="w-10 h-10 cursor-pointer" />
+            </Link>
+            <GiBugNet className="w-10 h-10 cursor-not-allowed" />
             <Link passHref href="/login">
               <HiUserCircle className="w-10 h-10 cursor-pointer" />
             </Link>
