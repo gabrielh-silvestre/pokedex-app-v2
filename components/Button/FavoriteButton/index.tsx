@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import { useAuth } from '../../../src/contexts/AuthContext';
 import { useFavorite } from '../../../src/contexts/FavoriteContext';
 
 import { HiHeart, HiOutlineHeart } from 'react-icons/hi';
@@ -11,6 +12,7 @@ interface IFavoriteButtonProps {
 }
 
 function FavoriteButton({ pokemonName }: IFavoriteButtonProps) {
+  const { user } = useAuth();
   const { favorites, addFavorite, removeFavorite } = useFavorite();
 
   const [isFavorite, setIsFavorite] = useState<Boolean>(false);
@@ -24,6 +26,10 @@ function FavoriteButton({ pokemonName }: IFavoriteButtonProps) {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [favorites]);
+
+  if (!user) {
+    return <></>;
+  }
 
   return isFavorite ? (
     <Container

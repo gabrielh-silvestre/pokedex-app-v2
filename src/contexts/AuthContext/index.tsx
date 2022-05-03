@@ -1,5 +1,5 @@
 import { useCallback, useContext, useEffect } from 'react';
-import { signOut } from 'firebase/auth';
+import { signOut as logout } from 'firebase/auth';
 import { doc, getDocFromServer, setDoc } from 'firebase/firestore';
 import { useAuthState, useSignInWithGithub } from 'react-firebase-hooks/auth';
 
@@ -32,6 +32,10 @@ const AuthProvider = ({ children }: ContextProviderProps) => {
       }
     }
   }, [user]);
+
+  const signOut = useCallback(async () => {
+    await logout(auth);
+  }, []);
 
   useEffect(() => {
     signIn();

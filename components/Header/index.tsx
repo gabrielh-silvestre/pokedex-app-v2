@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { HiHeart, HiUserCircle } from 'react-icons/hi';
 import { GiBugNet } from 'react-icons/gi';
+
+import { ProfileLink } from '../Links/ProfileLink';
 
 import {
   Container,
@@ -14,6 +15,7 @@ import {
 } from './styles';
 
 import PokeBallLogo from '../../public/pokeball.png';
+import { FavoriteLink } from '../Links/FavoriteLink';
 
 function Header() {
   return (
@@ -35,21 +37,15 @@ function Header() {
 
           <input
             type="text"
-            name="searchbar"
+            name="searchBar"
             className="rounded-md h-min w-full col-span-2 mt-2 py-1 pl-2 lg:col-start-2 lg:col-auto"
             // TODO: split into a new component
           />
 
           <UserOptionsContainer>
-            {' '}
-            {/* TODO: add functinality */}
-            <Link passHref href="/favorites">
-              <HiHeart className="w-10 h-10 cursor-pointer" />
-            </Link>
+            <FavoriteLink />
             <GiBugNet className="w-10 h-10 cursor-not-allowed" />
-            <Link passHref href="/login">
-              <HiUserCircle className="w-10 h-10 cursor-pointer" />
-            </Link>
+            <ProfileLink />
           </UserOptionsContainer>
         </MainContainer>
 
