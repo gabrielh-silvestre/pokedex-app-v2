@@ -10,6 +10,7 @@ import {
   RelationTitle,
   EffectTitle,
   TypesContainer,
+  EffectContainer,
 } from './styles';
 
 interface IDamageRelationProps {
@@ -23,45 +24,53 @@ function DamageRelation({ damageRelations }: IDamageRelationProps) {
         <RelationSection>
           <RelationTitle>Attack relation</RelationTitle>
 
-          <EffectTitle>Very effective against</EffectTitle>
-          <TypesContainer>
-            {damageRelations.double_damage_to.map(({ name }) => (
-              <CardContainer key={`atk-str-${name}`}>
-                <SlimCard title={name} link={{ href: `/type/${name}` }} />
-              </CardContainer>
-            ))}
-          </TypesContainer>
+          <EffectContainer>
+            <EffectTitle>Very effective against</EffectTitle>
+            <TypesContainer>
+              {damageRelations.double_damage_to.map(({ name }) => (
+                <CardContainer key={`atk-str-${name}`}>
+                  <SlimCard title={name} link={{ href: `/type/${name}` }} />
+                </CardContainer>
+              ))}
+            </TypesContainer>
+          </EffectContainer>
 
-          <EffectTitle>Not very effective against</EffectTitle>
-          <TypesContainer>
-            {damageRelations.half_damage_to.map(({ name }) => (
-              <CardContainer key={`atk-weak-${name}`}>
-                <SlimCard title={name} link={{ href: `/type/${name}` }} />
-              </CardContainer>
-            ))}
-          </TypesContainer>
+          <EffectContainer>
+            <EffectTitle>Not very effective against</EffectTitle>
+            <TypesContainer>
+              {damageRelations.half_damage_to.map(({ name }) => (
+                <CardContainer key={`atk-weak-${name}`}>
+                  <SlimCard title={name} link={{ href: `/type/${name}` }} />
+                </CardContainer>
+              ))}
+            </TypesContainer>
+          </EffectContainer>
         </RelationSection>
 
         <RelationSection>
           <RelationTitle>Defense relation</RelationTitle>
 
-          <EffectTitle>Very effective against</EffectTitle>
-          <TypesContainer>
-            {damageRelations.half_damage_from.map(({ name }) => (
-              <CardContainer key={`def-str-${name}`}>
-                <SlimCard title={name} link={{ href: `/type/${name}` }} />
-              </CardContainer>
-            ))}
-          </TypesContainer>
+          <EffectContainer>
+            <EffectTitle>Very effective against</EffectTitle>
+            <TypesContainer>
+              {damageRelations.half_damage_from.map(({ name }) => (
+                <CardContainer key={`def-str-${name}`}>
+                  <SlimCard title={name} link={{ href: `/type/${name}` }} />
+                </CardContainer>
+              ))}
+            </TypesContainer>
+          </EffectContainer>
 
-          <EffectTitle>Not very effective against</EffectTitle>
-          <TypesContainer>
-            {damageRelations.double_damage_from.map(({ name }) => (
-              <CardContainer key={`def-weak-${name}`}>
-                <SlimCard title={name} link={{ href: `/type/${name}` }} />
-              </CardContainer>
-            ))}
-          </TypesContainer>
+          <EffectContainer>
+            <EffectTitle>Not very effective against</EffectTitle>
+            <TypesContainer>
+              {damageRelations.double_damage_from.map(({ name }) => (
+                <CardContainer key={`def-weak-${name}`}>
+                  <SlimCard title={name} link={{ href: `/type/${name}` }} />
+                </CardContainer>
+              ))}
+            </TypesContainer>
+          </EffectContainer>
         </RelationSection>
       </ContentContainer>
     </Container>

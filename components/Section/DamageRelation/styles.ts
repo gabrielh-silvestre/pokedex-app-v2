@@ -18,10 +18,18 @@ const RelationSection = tw.section`
   py-1
   px-2
 
+  flex
+  flex-col
+  items-center
+
   shadow-md
   rounded
 
-  text-lg
+  md:grid
+  md:grid-cols-2
+  md:justify-items-center
+
+  lg:justify-items-start
 `;
 
 const RelationTitle = tw.h2`
@@ -30,6 +38,21 @@ const RelationTitle = tw.h2`
   text-2xl
   font-bold
   text-gray-600
+
+  md:col-span-2
+  md:grow-0
+`;
+
+const EffectContainer = tw.div`
+  flex
+  flex-col
+
+  text-center
+
+  md:self-start
+
+  lg:first-of-type:col-span-2
+  lg:text-left
 `;
 
 const EffectTitle = tw.h3`
@@ -48,13 +71,17 @@ const CardContainer = tw.div`
 const TypesContainer = tw.div`
   flex
   flex-wrap
-`
+  justify-center
+
+  lg:justify-start
+`;
 
 export {
   Container,
   ContentContainer,
   RelationTitle,
   RelationSection,
+  EffectContainer,
   EffectTitle,
   CardContainer,
   TypesContainer,
