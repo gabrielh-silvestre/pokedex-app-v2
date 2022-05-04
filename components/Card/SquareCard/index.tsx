@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { memo } from 'react';
 
-import { CardData } from '../../../src/@types/types';
+import { SquareCardData } from '../../../src/@types/types';
 
 import { capitalize } from '../../../src/utils';
 
@@ -19,7 +19,7 @@ import {
 
 import NotFoundPic from '../../../public/not_found.png';
 
-function SquareCardComponent({ id, name, types, sprites }: CardData) {
+function SquareCardComponent({ id, name, types, sprites }: SquareCardData) {
   return (
     <Container>
       <ImageContainer>
@@ -59,5 +59,3 @@ const SquareCardMemo = memo(
 );
 
 export { SquareCardMemo, SquareCardComponent as SquareCard };
-
-// export const SquareCard = (infinite?: boolean) => infinite ? SquareCardMemo : SquareCardComponent;

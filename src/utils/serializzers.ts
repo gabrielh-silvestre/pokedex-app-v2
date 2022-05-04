@@ -1,8 +1,8 @@
 import { Pokemon } from 'pokenode-ts';
 
-import { CardData } from '../@types/types';
+import { SquareCardData } from '../@types/types';
 
-const serializeToListContext = (arr: Pokemon[]): CardData[] => {
+const serializeToListContext = (arr: Pokemon[]): SquareCardData[] => {
   return arr.map(({ id, name, types, sprites }) => ({
     id,
     name,
