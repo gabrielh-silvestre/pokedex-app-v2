@@ -53,7 +53,7 @@ function Header() {
           <Link passHref href="/generation/1">
             <SiteLinks>Generations</SiteLinks>
           </Link>
-          <Link passHref href="/type/1">
+          <Link passHref href="/type">
             <SiteLinks>Types</SiteLinks>
           </Link>
           <Link passHref href="/">
