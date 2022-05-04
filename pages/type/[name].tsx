@@ -1,18 +1,22 @@
 import type { GetServerSideProps, NextPage } from 'next';
 import Head from 'next/head';
+import { TypeRelations } from 'pokenode-ts';
 
 import { pokemonClient } from '../../src/clients/PokeNode';
 import { capitalize } from '../../src/utils';
 
+import { DamageRelation } from '../../components/Section/DamageRelation';
 import { StaticList } from '../../components/List/StaticList';
 import { ListProvider } from '../../src/contexts/ListContext';
 
 interface IListByTypeProps {
+  damageRelations: TypeRelations;
   pokemonList: string[];
   typeName: string;
 }
 
 const PokemonListByType: NextPage<IListByTypeProps> = ({
+  damageRelations,
   pokemonList,
   typeName,
 }) => {
@@ -31,6 +35,7 @@ const PokemonListByType: NextPage<IListByTypeProps> = ({
         />
       </Head>
       <>
+        <DamageRelation damageRelations={damageRelations} />
         <ListProvider>
           <StaticList list={pokemonList} />
         </ListProvider>
@@ -42,15 +47,17 @@ const PokemonListByType: NextPage<IListByTypeProps> = ({
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { name } = context.query;
 
-  const response = await pokemonClient.getTypeByName(name as string);
+  const { damage_relations, move_damage_class, moves, pokemon } =
+    await pokemonClient.getTypeByName(name as string);
 
-  const serializedResponse = response.pokemon.map(
-    ({ pokemon }) => pokemon.name
-  ) as string[];
+  const pokemonList = pokemon.map(({ pokemon }) => pokemon.name) as string[];
 
   return {
     props: {
-      pokemonList: serializedResponse,
+      damageRelations: damage_relations,
+      moveDamageClass: move_damage_class,
+      moves,
+      pokemonList,
       typeName: name,
     },
   };
