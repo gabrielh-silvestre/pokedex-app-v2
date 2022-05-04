@@ -22,7 +22,6 @@ const Container = tw.section`
 const ContainerTitle = tw.h3`
   mb-3
 
-  text-3xl
   text-center
 `;
 
