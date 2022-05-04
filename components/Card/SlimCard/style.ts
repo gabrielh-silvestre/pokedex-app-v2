@@ -1,9 +1,11 @@
 import tw from 'tailwind-styled-components';
 
-const Container = tw.section`
-  w-full
+const ContainerTitle = tw.h3`
+  text-center
 
   my-4
+  py-2
+  px-4
 
   flex
   justify-center
@@ -19,10 +21,4 @@ const Container = tw.section`
   hover:shadow-xl
 `;
 
-const ContainerTitle = tw.h3`
-  mb-3
-
-  text-center
-`;
-
-export { Container, ContainerTitle };
+export { ContainerTitle };

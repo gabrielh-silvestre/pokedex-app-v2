@@ -7,7 +7,6 @@ type SquareCardData = Pick<Pokemon, 'id' | 'name' | 'types' | 'sprites'>;
 
 type SlimCardData = {
   title: string;
-  description?: string;
 };
 
 type ContextProviderProps = {

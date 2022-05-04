@@ -3,7 +3,7 @@ import { SlimCardData } from '../../../src/@types/types';
 
 import { capitalize } from '../../../src/utils';
 
-import { Container, ContainerTitle } from './style';
+import { ContainerTitle } from './style';
 
 interface ISlimCardProps extends SlimCardData {
   link?: {
@@ -11,19 +11,13 @@ interface ISlimCardProps extends SlimCardData {
   };
 }
 
-function SlimCard({ title, description, link }: ISlimCardProps) {
+function SlimCard({ title, link }: ISlimCardProps) {
   return link ? (
     <Link passHref href={link.href}>
-      <Container className={title}>
-        <ContainerTitle>{capitalize(title)}</ContainerTitle>
-        {description && <p>{description}</p>}
-      </Container>
+      <ContainerTitle className={title}>{capitalize(title)}</ContainerTitle>
     </Link>
   ) : (
-    <Container className={title}>
-      <ContainerTitle>{capitalize(title)}</ContainerTitle>
-      {description && <p>{description}</p>}
-    </Container>
+    <ContainerTitle className={title}>{capitalize(title)}</ContainerTitle>
   );
 }
 
