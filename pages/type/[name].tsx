@@ -40,9 +40,9 @@ const PokemonListByType: NextPage<IListByTypeProps> = ({
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { id } = context.query;
+  const { name } = context.query;
 
-  const response = await pokemonClient.getTypeById(Number(id));
+  const response = await pokemonClient.getTypeByName(name as string);
 
   const serializedResponse = response.pokemon.map(
     ({ pokemon }) => pokemon.name
@@ -51,7 +51,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
     props: {
       pokemonList: serializedResponse,
-      typeName: response.name,
+      typeName: name,
     },
   };
 };
