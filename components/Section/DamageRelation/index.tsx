@@ -1,3 +1,5 @@
+import { TypeRelations } from 'pokenode-ts';
+
 import { SlimCard } from '../../Card/SlimCard';
 
 import {
@@ -10,7 +12,11 @@ import {
   TypesContainer,
 } from './styles';
 
-function DamageRelation() {
+interface IDamageRelationProps {
+  damageRelations: TypeRelations;
+}
+
+function DamageRelation({ damageRelations }: IDamageRelationProps) {
   return (
     <Container>
       <ContentContainer>
@@ -19,18 +25,18 @@ function DamageRelation() {
 
           <EffectTitle>Very effective against</EffectTitle>
           <TypesContainer>
-            {['water', 'grass', 'electric', 'ice', 'dragon'].map((type) => (
-              <CardContainer key={`atk-str-${type}`}>
-                <SlimCard title={type} />
+            {damageRelations.double_damage_to.map(({ name }) => (
+              <CardContainer key={`atk-str-${name}`}>
+                <SlimCard title={name} link={{ href: `/type/${name}` }} />
               </CardContainer>
             ))}
           </TypesContainer>
 
           <EffectTitle>Not very effective against</EffectTitle>
           <TypesContainer>
-            {['water', 'grass', 'electric', 'ice', 'dragon'].map((type) => (
-              <CardContainer key={`atk-weak-${type}`}>
-                <SlimCard title={type} />
+            {damageRelations.half_damage_to.map(({ name }) => (
+              <CardContainer key={`atk-weak-${name}`}>
+                <SlimCard title={name} link={{ href: `/type/${name}` }} />
               </CardContainer>
             ))}
           </TypesContainer>
@@ -41,15 +47,19 @@ function DamageRelation() {
 
           <EffectTitle>Very effective against</EffectTitle>
           <TypesContainer>
-            {['water', 'grass', 'electric', 'ice', 'dragon'].map((type) => (
-              <SlimCard key={`def-str-${type}`} title={type} />
+            {damageRelations.half_damage_from.map(({ name }) => (
+              <CardContainer key={`def-str-${name}`}>
+                <SlimCard title={name} link={{ href: `/type/${name}` }} />
+              </CardContainer>
             ))}
           </TypesContainer>
 
           <EffectTitle>Not very effective against</EffectTitle>
           <TypesContainer>
-            {['water', 'grass', 'electric', 'ice', 'dragon'].map((type) => (
-              <SlimCard key={`def-weak-${type}`} title={type} />
+            {damageRelations.double_damage_from.map(({ name }) => (
+              <CardContainer key={`def-weak-${name}`}>
+                <SlimCard title={name} link={{ href: `/type/${name}` }} />
+              </CardContainer>
             ))}
           </TypesContainer>
         </RelationSection>
