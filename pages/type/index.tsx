@@ -35,7 +35,7 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const typeList = results
     .map(({ name }) => name)
-    .filter((name) => name !== 'unknown');
+    .filter((name) => !['unknown', 'shadow'].includes(name));
 
   return {
     props: {
