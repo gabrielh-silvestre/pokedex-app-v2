@@ -11,6 +11,10 @@ const Container = tw.article`
 const ContentContainer = tw.div`
   flex
   flex-col
+
+  lg:grid
+  lg:grid-cols-2
+  lg:gap-x-4
 `;
 
 const RelationSection = tw.section`
@@ -51,7 +55,7 @@ const EffectContainer = tw.div`
 
   md:self-start
 
-  lg:first-of-type:col-span-2
+  lg:col-span-2
   lg:text-left
 `;
 
@@ -62,9 +66,8 @@ const EffectTitle = tw.h3`
 `;
 
 const CardContainer = tw.div`
-  mx-2
+  mr-2
 
-  first:ml-0
   last:mr-0
 `;
 
