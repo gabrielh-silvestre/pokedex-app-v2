@@ -22,7 +22,9 @@ const PokemonTypeList: NextPage<IListByTypeProps> = ({ typeList }) => {
       </Head>
       <>
         <ListProvider>
-          <OptionsList list={typeList} />
+          <main className="grow flex justify-center items-center">
+            <OptionsList list={typeList} />
+          </main>
         </ListProvider>
       </>
     </>
