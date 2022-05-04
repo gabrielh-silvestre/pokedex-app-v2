@@ -7,6 +7,8 @@ const Container = tw.div`
 
   grow
 
+  text-3xl
+
   scroll-hidden
 
   sm:grid
