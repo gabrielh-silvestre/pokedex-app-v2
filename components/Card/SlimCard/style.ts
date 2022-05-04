@@ -14,6 +14,8 @@ const Container = tw.section`
 
   duration-200
 
+  cursor-pointer
+
   hover:shadow-xl
 `;
 

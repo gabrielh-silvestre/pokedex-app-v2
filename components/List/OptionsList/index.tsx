@@ -15,7 +15,7 @@ function OptionsList({ list }: IOptionsListProps) {
     <Container>
       <FavoriteProvider user={user}>
         {list.map((item) => (
-          <SlimCard key={item} title={item} />
+          <SlimCard key={item} title={item} link={{ href: `/type/${item}` }} />
         ))}
       </FavoriteProvider>
     </Container>
