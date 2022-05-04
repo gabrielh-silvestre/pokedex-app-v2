@@ -1,3 +1,7 @@
+import { NamedAPIResource } from 'pokenode-ts';
+
+import { capitalize } from '../../../src/utils';
+
 import {
   Container,
   ContentContainer,
@@ -8,17 +12,28 @@ import {
   TypeTitle,
 } from './styles';
 
-function DamageType() {
+interface IDamageTypeProps {
+  typeName: string;
+  moveDamageClass: NamedAPIResource | null;
+  moves: NamedAPIResource[];
+}
+
+function DamageType({ moveDamageClass, moves, typeName }: IDamageTypeProps) {
   return (
     <Container>
       <ContentContainer>
         <TypeSection>
           <TypeTitle>Damage Type</TypeTitle>
-          <TypeDescription>Physical</TypeDescription>
+          {moveDamageClass ? (
+            <TypeDescription>{capitalize(moveDamageClass.name)}</TypeDescription>
+          ) : (
+            <TypeDescription>?</TypeDescription>
+          )}
         </TypeSection>
 
         <TypeMoves>
-          <TypeMovesNumber>50</TypeMovesNumber> XX-Type Moves
+          <TypeMovesNumber>{moves.length}</TypeMovesNumber>{' '}
+          {capitalize(typeName)}-Type Moves
         </TypeMoves>
       </ContentContainer>
     </Container>

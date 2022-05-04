@@ -1,22 +1,27 @@
 import type { GetServerSideProps, NextPage } from 'next';
 import Head from 'next/head';
-import { TypeRelations } from 'pokenode-ts';
+import { NamedAPIResource, TypeRelations } from 'pokenode-ts';
 
 import { pokemonClient } from '../../src/clients/PokeNode';
 import { capitalize } from '../../src/utils';
 
 import { DamageRelation } from '../../components/Section/DamageRelation';
+import { DamageType } from '../../components/Section/DamageType';
 import { StaticList } from '../../components/List/StaticList';
 import { ListProvider } from '../../src/contexts/ListContext';
 
 interface IListByTypeProps {
   damageRelations: TypeRelations;
+  moveDamageClass: NamedAPIResource;
+  moves: NamedAPIResource[];
   pokemonList: string[];
   typeName: string;
 }
 
 const PokemonListByType: NextPage<IListByTypeProps> = ({
   damageRelations,
+  moveDamageClass,
+  moves,
   pokemonList,
   typeName,
 }) => {
@@ -36,6 +41,11 @@ const PokemonListByType: NextPage<IListByTypeProps> = ({
       </Head>
       <>
         <DamageRelation damageRelations={damageRelations} />
+        <DamageType
+          typeName={typeName}
+          moveDamageClass={moveDamageClass}
+          moves={moves}
+        />
         <ListProvider>
           <StaticList list={pokemonList} />
         </ListProvider>
