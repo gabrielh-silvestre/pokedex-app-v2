@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import Image from 'next/image';
 import { memo } from 'react';
 
@@ -6,6 +7,7 @@ import { SquareCardData } from '../../../src/@types/types';
 import { capitalize } from '../../../src/utils';
 
 import { FavoriteButton } from '../../Button/FavoriteButton';
+import { SlimCard } from '../SlimCard';
 
 import {
   Container,
@@ -23,12 +25,14 @@ function SquareCardComponent({ id, name, types, sprites }: SquareCardData) {
   return (
     <Container>
       <ImageContainer>
-        <Image
-          src={sprites.other['official-artwork'].front_default || NotFoundPic}
-          alt={name}
-          width={100}
-          height={100}
-        />
+        <Link passHref href={`/pokemon/${name}`}>
+          <Image
+            src={sprites.other['official-artwork'].front_default || NotFoundPic}
+            alt={name}
+            width={100}
+            height={100}
+          />
+        </Link>
       </ImageContainer>
 
       <ContentContainer>
@@ -37,13 +41,9 @@ function SquareCardComponent({ id, name, types, sprites }: SquareCardData) {
         <PokemonName>{capitalize(name)}</PokemonName>
 
         <TypesContainer>
-          {types.map(
-            (
-              type // TODO
-            ) => (
-              <span key={type.type.name}>{type.type.name}</span>
-            )
-          )}
+          {types.map(({ type }) => (
+            <SlimCard key={type.name} title={type.name} />
+          ))}
         </TypesContainer>
       </ContentContainer>
       <FavoriteButtonContainer>

@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { User } from 'firebase/auth';
 
-import { Pokemon } from 'pokenode-ts';
+import { Pokemon, PokemonSpecies } from 'pokenode-ts';
 
 type SquareCardData = Pick<Pokemon, 'id' | 'name' | 'types' | 'sprites'>;
 
@@ -35,6 +35,8 @@ type FavoriteContextProps = ContextProviderProps & {
   user: User | null | undefined;
 };
 
+type PokemonDetailedData = Pokemon & PokemonSpecies;
+
 export type {
   SlimCardData,
   SquareCardData,
@@ -43,4 +45,5 @@ export type {
   AuthContext,
   FavoriteContext,
   FavoriteContextProps,
+  PokemonDetailedData,
 };

@@ -14,7 +14,11 @@ module.exports = {
         '2xl': '6rem',
       },
     },
-    extend: {},
+    extend: {
+      screens: {
+        '2xl': '1400px',
+      },
+    },
   },
   plugins: [],
 };
