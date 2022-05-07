@@ -18,17 +18,20 @@ import {
 } from './style';
 
 import NotFoundPic from '../../../public/not_found.png';
+import Link from 'next/link';
 
 function SquareCardComponent({ id, name, types, sprites }: SquareCardData) {
   return (
     <Container>
       <ImageContainer>
-        <Image
-          src={sprites.other['official-artwork'].front_default || NotFoundPic}
-          alt={name}
-          width={100}
-          height={100}
-        />
+        <Link passHref href={`/pokemon/${name}`}>
+          <Image
+            src={sprites.other['official-artwork'].front_default || NotFoundPic}
+            alt={name}
+            width={100}
+            height={100}
+          />
+        </Link>
       </ImageContainer>
 
       <ContentContainer>
