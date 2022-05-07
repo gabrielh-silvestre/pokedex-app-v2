@@ -1,93 +1,105 @@
 import Image from 'next/image';
 
+import {
+  AbilitiesContainer,
+  AbilitiesNamesContainer,
+  ImageSection,
+  StatsContainer,
+  StatsInfoContainer,
+  StatsSection,
+  StatsTitle,
+  StatsValue,
+} from './styles';
+
 function PokemonDetailedCard() {
   return (
     <>
-      <section className="img-container">
+      <ImageSection>
         <Image
           src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
           alt="pokemon"
           width={200}
           height={200}
         />
-      </section>
+      </ImageSection>
 
-      <section className="stats-container">
-        <div>
-          <div>
-            <h4>Abilities</h4>
-            <span>Trem</span>
-          </div>
-        </div>
+      <StatsSection>
+        <AbilitiesContainer>
+          <StatsTitle>Abilities</StatsTitle>
+          <AbilitiesNamesContainer>
+            <StatsValue>Trem</StatsValue>
+            <StatsValue>Trem</StatsValue>
+          </AbilitiesNamesContainer>
+        </AbilitiesContainer>
 
-        <div>
-          <div>
-            <h4>HP</h4>
-            <span>Trem</span>
-          </div>
+        <StatsContainer>
+          <StatsInfoContainer>
+            <StatsTitle>HP</StatsTitle>
+            <StatsValue>10</StatsValue>
+          </StatsInfoContainer>
 
-          <div>
-            <h4>Speed</h4>
-            <span>Trem</span>
-          </div>
+          <StatsInfoContainer>
+            <StatsTitle>Speed</StatsTitle>
+            <StatsValue>10</StatsValue>
+          </StatsInfoContainer>
 
-          <div>
-            <h4>Attack</h4>
-            <span>Trem</span>
-          </div>
+          <StatsInfoContainer>
+            <StatsTitle>Attack</StatsTitle>
+            <StatsValue>10</StatsValue>
+          </StatsInfoContainer>
 
-          <div>
-            <h4>Defense</h4>
-            <span>Trem</span>
-          </div>
+          <StatsInfoContainer>
+            <StatsTitle>Defense</StatsTitle>
+            <StatsValue>10</StatsValue>
+          </StatsInfoContainer>
 
-          <div>
-            <h4>Sp. Attack</h4>
-            <span>Trem</span>
-          </div>
+          <StatsInfoContainer>
+            <StatsTitle>Sp. Attack</StatsTitle>
+            <StatsValue>10</StatsValue>
+          </StatsInfoContainer>
 
-          <div>
-            <h4>Sp. Defense</h4>
-            <span>Trem</span>
-          </div>
-        </div>
+          <StatsInfoContainer>
+            <StatsTitle>Sp. Defense</StatsTitle>
+            <StatsValue>10</StatsValue>
+          </StatsInfoContainer>
+        </StatsContainer>
 
-        <div>
-          <div>
-            <h4>Weight</h4>
-            <span>Trem</span>
-          </div>
+        <StatsContainer>
+          <StatsInfoContainer>
+            <StatsTitle>Weight</StatsTitle>
+            <StatsValue>10</StatsValue>
+          </StatsInfoContainer>
 
-          <div>
-            <h4>Height</h4>
-            <span>Trem</span>
-          </div>
-        </div>
+          <StatsInfoContainer>
+            <StatsTitle>Height</StatsTitle>
+            <StatsValue>10</StatsValue>
+          </StatsInfoContainer>
+        </StatsContainer>
 
-        <div>
-          <div>
-            <h4>Capture Rate</h4>
-            <span>Trem</span>
-          </div>
+        <StatsContainer>
+          <StatsInfoContainer>
+            <StatsTitle>Capture Rate</StatsTitle>
+            <StatsValue>Trem</StatsValue>
+          </StatsInfoContainer>
 
-          <div>
-            <h4>Growth Rate</h4>
-            <span>Trem</span>
-          </div>
-        </div>
+          <StatsInfoContainer>
+            <StatsTitle>Growth Rate</StatsTitle>
+            <StatsValue>Trem</StatsValue>
+          </StatsInfoContainer>
+        </StatsContainer>
 
-        <div>
-          <div>
-            <h4>Base Experience</h4>
-            <span>Trem</span>
-          </div>
+        <StatsContainer>
+          <StatsInfoContainer>
+            <StatsTitle>Base Experience</StatsTitle>
+            <StatsValue>Trem</StatsValue>
+          </StatsInfoContainer>
 
-          <div>
-            <h4>Base Happiness</h4>
-            <span>Trem</span>
-          </div>
-        </div>
-      </section>
+          <StatsInfoContainer>
+            <StatsTitle>Base Happiness</StatsTitle>
+            <StatsValue>Trem</StatsValue>
+          </StatsInfoContainer>
+        </StatsContainer>
+      </StatsSection>
     </>
   );
 }
