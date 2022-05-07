@@ -1,9 +1,14 @@
 import Image from 'next/image';
 
+import { PokemonDetailedData } from '../../../src/@types/types';
+import { capitalize } from '../../../src/utils';
+
 import {
   AbilitiesContainer,
   AbilitiesNamesContainer,
   ImageSection,
+  PokemonIdentifier,
+  PokemonIdentifierSection,
   StatsContainer,
   StatsInfoContainer,
   StatsSection,
@@ -11,92 +16,89 @@ import {
   StatsValue,
 } from './styles';
 
-function PokemonDetailedCard() {
+function PokemonDetailedCard({
+  abilities,
+  base_experience,
+  base_happiness,
+  capture_rate,
+  growth_rate,
+  height,
+  name,
+  id,
+  sprites,
+  stats,
+  weight,
+}: PokemonDetailedData) {
   return (
     <>
       <ImageSection>
         <Image
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
-          alt="pokemon"
+          src={sprites.other['official-artwork'].front_default || ''}
+          alt={name}
           width={200}
           height={200}
         />
+
+        <PokemonIdentifierSection>
+          <StatsTitle>{capitalize(name)}</StatsTitle>
+          <PokemonIdentifier>Nº {id}</PokemonIdentifier>
+        </PokemonIdentifierSection>
       </ImageSection>
 
       <StatsSection>
         <AbilitiesContainer>
           <StatsTitle>Abilities</StatsTitle>
           <AbilitiesNamesContainer>
-            <StatsValue>Trem</StatsValue>
-            <StatsValue>Trem</StatsValue>
+            {abilities.map(({ ability }) => (
+              <StatsValue key={ability.name}>
+                {capitalize(ability.name)}
+              </StatsValue>
+            ))}
           </AbilitiesNamesContainer>
         </AbilitiesContainer>
 
         <StatsContainer>
-          <StatsInfoContainer>
-            <StatsTitle>HP</StatsTitle>
-            <StatsValue>10</StatsValue>
-          </StatsInfoContainer>
-
-          <StatsInfoContainer>
-            <StatsTitle>Speed</StatsTitle>
-            <StatsValue>10</StatsValue>
-          </StatsInfoContainer>
-
-          <StatsInfoContainer>
-            <StatsTitle>Attack</StatsTitle>
-            <StatsValue>10</StatsValue>
-          </StatsInfoContainer>
-
-          <StatsInfoContainer>
-            <StatsTitle>Defense</StatsTitle>
-            <StatsValue>10</StatsValue>
-          </StatsInfoContainer>
-
-          <StatsInfoContainer>
-            <StatsTitle>Sp. Attack</StatsTitle>
-            <StatsValue>10</StatsValue>
-          </StatsInfoContainer>
-
-          <StatsInfoContainer>
-            <StatsTitle>Sp. Defense</StatsTitle>
-            <StatsValue>10</StatsValue>
-          </StatsInfoContainer>
+          {stats.map(({ base_stat, stat }) => (
+            <StatsInfoContainer key={stat.name}>
+              <StatsTitle>{capitalize(stat.name)}</StatsTitle>
+              <StatsValue>{base_stat}</StatsValue>
+            </StatsInfoContainer>
+          ))}
         </StatsContainer>
 
         <StatsContainer>
           <StatsInfoContainer>
             <StatsTitle>Weight</StatsTitle>
-            <StatsValue>10</StatsValue>
+            <StatsValue>{weight / 10} Kg</StatsValue>
           </StatsInfoContainer>
 
           <StatsInfoContainer>
             <StatsTitle>Height</StatsTitle>
-            <StatsValue>10</StatsValue>
+            <StatsValue>{height / 10} m</StatsValue>
           </StatsInfoContainer>
         </StatsContainer>
 
         <StatsContainer>
           <StatsInfoContainer>
             <StatsTitle>Capture Rate</StatsTitle>
-            <StatsValue>Trem</StatsValue>
+            <StatsValue>{capture_rate}</StatsValue>
           </StatsInfoContainer>
 
           <StatsInfoContainer>
             <StatsTitle>Growth Rate</StatsTitle>
-            <StatsValue>Trem</StatsValue>
+            <StatsValue>{capitalize(growth_rate.name)}</StatsValue>
           </StatsInfoContainer>
         </StatsContainer>
 
         <StatsContainer>
           <StatsInfoContainer>
             <StatsTitle>Base Experience</StatsTitle>
-            <StatsValue>Trem</StatsValue>
+            <StatsValue>{base_experience}</StatsValue>
           </StatsInfoContainer>
 
           <StatsInfoContainer>
             <StatsTitle>Base Happiness</StatsTitle>
-            <StatsValue>Trem</StatsValue>
+            <StatsValue>{base_happiness}</StatsValue>
           </StatsInfoContainer>
         </StatsContainer>
       </StatsSection>

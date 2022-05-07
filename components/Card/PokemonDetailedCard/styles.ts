@@ -2,8 +2,26 @@ import tw from 'tailwind-styled-components';
 
 const ImageSection = tw.section`
   flex
+  flex-col
   justify-center
   items-center
+
+  rounded
+  shadow-md
+`;
+
+const PokemonIdentifierSection = tw.section`
+  w-full
+
+  p-4
+
+  flex
+  justify-between
+`;
+
+const PokemonIdentifier = tw.span`
+  text-lg
+  text-gray-500
 `;
 
 const StatsSection = tw.section`
@@ -70,6 +88,8 @@ const StatsValue = tw.span`
 
 export {
   ImageSection,
+  PokemonIdentifierSection,
+  PokemonIdentifier,
   StatsSection,
   AbilitiesContainer,
   AbilitiesNamesContainer,
