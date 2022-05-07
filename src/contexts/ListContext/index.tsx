@@ -11,8 +11,11 @@ import { serializeToListContext } from '../../utils/serializzers';
 
 const ListProvider = ({ children }: ContextProviderProps) => {
   const [solvedList, setSolvedList] = useState<SquareCardData[]>([]);
+  const [loading, setLoading] = useState(false);
 
   const getByName = useCallback(async (list: string[]) => {
+    setLoading(true);
+
     const promises = list.map(async (name) =>
       pokemonClient.getPokemonByName(name)
     );
@@ -21,6 +24,7 @@ const ListProvider = ({ children }: ContextProviderProps) => {
     const serialized = serializeToListContext(resolved);
 
     setSolvedList(serialized);
+    setLoading(false);
   }, []);
 
   const getBySpecie = useCallback(async (list: string[]) => {
@@ -45,6 +49,7 @@ const ListProvider = ({ children }: ContextProviderProps) => {
   }, []);
 
   const context = {
+    loading,
     solvedList,
     getByName,
     getBySpecie,
