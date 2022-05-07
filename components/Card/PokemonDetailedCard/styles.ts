@@ -9,6 +9,8 @@ const Container = tw.div`
 `;
 
 const ImageSection = tw.section`
+  relative
+
   flex
   flex-col
   justify-center
@@ -17,18 +19,27 @@ const ImageSection = tw.section`
   rounded
   shadow-md
 
+  bg-gray-200
+
   md:row-span-2
   md:row-end-2
-  md:justify-between
 `;
 
 const PokemonIdentifierSection = tw.section`
+  md:absolute
+  md:bottom-0
+
   w-full
 
   p-4
 
   flex
   justify-between
+  shrink
+
+  justify-self-end
+
+  bg-gray-50
 `;
 
 const PokemonIdentifier = tw.span`
