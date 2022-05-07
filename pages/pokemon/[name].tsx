@@ -8,9 +8,10 @@ import { useAuth } from '../../src/contexts/AuthContext';
 import { utilityClient, pokemonClient } from '../../src/clients/PokeNode';
 import { capitalize } from '../../src/utils';
 
+import { FavoriteProvider } from '../../src/contexts/FavoriteContext';
 import { PokemonDetailedCard } from '../../components/Card/PokemonDetailedCard';
 import { EvolutionSection } from '../../components/Section/EvolutionSection';
-import { FavoriteProvider } from '../../src/contexts/FavoriteContext';
+import { TypeList } from '../../components/Section/TypeList';
 
 interface IPokemonDetailProps {
   pokemonData: PokemonDetailedData;
@@ -22,7 +23,9 @@ const PokemonDetail: NextPage<IPokemonDetailProps> = ({
   evolutionChain,
 }) => {
   const { user } = useAuth();
-  const { name } = pokemonData;
+  const { name, types } = pokemonData;
+
+  const serializedTypes = types.map((type) => type.type.name);
 
   return (
     <>
@@ -38,6 +41,7 @@ const PokemonDetail: NextPage<IPokemonDetailProps> = ({
       <FavoriteProvider user={user}>
         <main className="container bg-gray-50 mt-8">
           <PokemonDetailedCard {...pokemonData} />
+          <TypeList types={serializedTypes} />
           <EvolutionSection {...evolutionChain} />
         </main>
       </FavoriteProvider>
