@@ -5,6 +5,10 @@ const Container = tw.section`
 
   mx-auto
   mt-8
+
+  md:w-1/2
+
+  lg:w-full
 `;
 
 const EvolutionTitle = tw.h2`
@@ -17,6 +21,10 @@ const EvolutionTitle = tw.h2`
 const EvolutionContainer = tw.div`
   flex
   flex-col
+
+  lg:grid
+  lg:grid-cols-3
+  lg:gap-x-4
 `;
 
 const WithoutEvolutionTitle = tw(EvolutionTitle)`
