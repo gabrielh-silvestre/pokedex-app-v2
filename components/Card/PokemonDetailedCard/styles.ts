@@ -4,6 +4,11 @@ const Container = tw.div`
   md:grid
   md:grid-cols-2
   md:gap-4
+
+  2xl:grid-cols-3
+  2xl:grid-rows-2
+  2xl:gap-y-0
+  2xl:gap-x-4
 `;
 
 const ImageSection = tw.section`
@@ -34,6 +39,28 @@ const PokemonIdentifier = tw.span`
   text-gray-500
 `;
 
+const StatsSection = tw.section`
+  flex
+  flex-col
+  justify-center
+  items-center
+`;
+
+const AbilitySection = tw(StatsSection)`
+  2xl:col-span-3
+`;
+
+const CombatStatsSection = tw(StatsSection)`
+  2xl:col-start-2
+  2xl:self-stretch
+`;
+
+const OtherStatsSection = tw(StatsSection)`
+  md:col-span-2
+
+  2xl:col-start-3
+`;
+
 const AbilitiesContainer = tw.div`
   w-full
 
@@ -46,8 +73,6 @@ const AbilitiesContainer = tw.div`
 
   rounded
   shadow-md
-
-  md:row-span-1
 `;
 
 const AbilitiesNamesContainer = tw.div`
@@ -58,17 +83,9 @@ const AbilitiesNamesContainer = tw.div`
   items-center
 `;
 
-const StatsSection = tw.section`
-  flex
-  flex-col
-  justify-center
-  items-center
-
-  md:last-of-type:col-span-2
-`;
-
 const StatsContainer = tw.div`
   w-full
+  h-full
 
   py-4
 
@@ -79,6 +96,8 @@ const StatsContainer = tw.div`
 
   rounded
   shadow-md
+
+  2xl:gap-y-0
 `;
 
 const StatsInfoContainer = tw.div`
@@ -105,7 +124,9 @@ export {
   ImageSection,
   PokemonIdentifierSection,
   PokemonIdentifier,
-  StatsSection,
+  AbilitySection,
+  CombatStatsSection,
+  OtherStatsSection,
   AbilitiesContainer,
   AbilitiesNamesContainer,
   StatsContainer,

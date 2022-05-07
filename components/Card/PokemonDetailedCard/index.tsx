@@ -6,13 +6,15 @@ import { capitalize } from '../../../src/utils';
 import {
   AbilitiesContainer,
   AbilitiesNamesContainer,
+  AbilitySection,
+  CombatStatsSection,
   Container,
   ImageSection,
+  OtherStatsSection,
   PokemonIdentifier,
   PokemonIdentifierSection,
   StatsContainer,
   StatsInfoContainer,
-  StatsSection,
   StatsTitle,
   StatsValue,
 } from './styles';
@@ -46,7 +48,7 @@ function PokemonDetailedCard({
         </PokemonIdentifierSection>
       </ImageSection>
 
-      <StatsSection>
+      <AbilitySection>
         <AbilitiesContainer>
           <StatsTitle>Abilities</StatsTitle>
           <AbilitiesNamesContainer>
@@ -58,9 +60,9 @@ function PokemonDetailedCard({
             ))}
           </AbilitiesNamesContainer>
         </AbilitiesContainer>
-      </StatsSection>
+      </AbilitySection>
 
-      <StatsSection>
+      <CombatStatsSection>
         <StatsContainer>
           {stats.map(({ base_stat, stat }) => (
             <StatsInfoContainer key={stat.name}>
@@ -69,9 +71,9 @@ function PokemonDetailedCard({
             </StatsInfoContainer>
           ))}
         </StatsContainer>
-      </StatsSection>
+      </CombatStatsSection>
 
-      <StatsSection>
+      <OtherStatsSection>
         <StatsContainer>
           <StatsInfoContainer>
             <StatsTitle>Weight</StatsTitle>
@@ -107,7 +109,7 @@ function PokemonDetailedCard({
             <StatsValue>{base_happiness}</StatsValue>
           </StatsInfoContainer>
         </StatsContainer>
-      </StatsSection>
+      </OtherStatsSection>
     </Container>
   );
 }
