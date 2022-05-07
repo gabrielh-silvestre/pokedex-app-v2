@@ -49,9 +49,10 @@ function PokemonDetailedCard({
         <AbilitiesContainer>
           <StatsTitle>Abilities</StatsTitle>
           <AbilitiesNamesContainer>
-            {abilities.map(({ ability }) => (
+            {abilities.map(({ ability, is_hidden }) => (
               <StatsValue key={ability.name}>
                 {capitalize(ability.name)}
+                {is_hidden && '*'}
               </StatsValue>
             ))}
           </AbilitiesNamesContainer>
