@@ -34,6 +34,8 @@ const ImageContainer = tw.div`
 
   bg-gray-200
 
+  cursor-pointer
+
   2xl:h-auto
 `;
 
@@ -67,6 +69,7 @@ const TypesContainer = tw.div`
   flex
   justify-around
 
+  font-bold
   text-xs
 `;
 
