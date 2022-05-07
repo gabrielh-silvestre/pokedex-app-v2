@@ -6,6 +6,7 @@ import { capitalize } from '../../../src/utils';
 import {
   AbilitiesContainer,
   AbilitiesNamesContainer,
+  Container,
   ImageSection,
   PokemonIdentifier,
   PokemonIdentifierSection,
@@ -30,7 +31,7 @@ function PokemonDetailedCard({
   weight,
 }: PokemonDetailedData) {
   return (
-    <>
+    <Container>
       <ImageSection>
         <Image
           src={sprites.other['official-artwork'].front_default || ''}
@@ -57,7 +58,9 @@ function PokemonDetailedCard({
             ))}
           </AbilitiesNamesContainer>
         </AbilitiesContainer>
+      </StatsSection>
 
+      <StatsSection>
         <StatsContainer>
           {stats.map(({ base_stat, stat }) => (
             <StatsInfoContainer key={stat.name}>
@@ -66,7 +69,9 @@ function PokemonDetailedCard({
             </StatsInfoContainer>
           ))}
         </StatsContainer>
+      </StatsSection>
 
+      <StatsSection>
         <StatsContainer>
           <StatsInfoContainer>
             <StatsTitle>Weight</StatsTitle>
@@ -103,7 +108,7 @@ function PokemonDetailedCard({
           </StatsInfoContainer>
         </StatsContainer>
       </StatsSection>
-    </>
+    </Container>
   );
 }
 

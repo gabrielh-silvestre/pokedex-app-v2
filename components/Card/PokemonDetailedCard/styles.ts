@@ -1,5 +1,11 @@
 import tw from 'tailwind-styled-components';
 
+const Container = tw.div`
+  md:grid
+  md:grid-cols-2
+  md:gap-4
+`;
+
 const ImageSection = tw.section`
   flex
   flex-col
@@ -8,6 +14,10 @@ const ImageSection = tw.section`
 
   rounded
   shadow-md
+
+  md:row-span-2
+  md:row-end-2
+  md:justify-between
 `;
 
 const PokemonIdentifierSection = tw.section`
@@ -24,13 +34,6 @@ const PokemonIdentifier = tw.span`
   text-gray-500
 `;
 
-const StatsSection = tw.section`
-  flex
-  flex-col
-  justify-center
-  items-center
-`;
-
 const AbilitiesContainer = tw.div`
   w-full
 
@@ -43,6 +46,8 @@ const AbilitiesContainer = tw.div`
 
   rounded
   shadow-md
+
+  md:row-span-1
 `;
 
 const AbilitiesNamesContainer = tw.div`
@@ -51,6 +56,15 @@ const AbilitiesNamesContainer = tw.div`
   flex
   justify-around
   items-center
+`;
+
+const StatsSection = tw.section`
+  flex
+  flex-col
+  justify-center
+  items-center
+
+  md:last-of-type:col-span-2
 `;
 
 const StatsContainer = tw.div`
@@ -87,6 +101,7 @@ const StatsValue = tw.span`
 `;
 
 export {
+  Container,
   ImageSection,
   PokemonIdentifierSection,
   PokemonIdentifier,
