@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import { Pokemon } from 'pokenode-ts';
 
-import { CardData, ContextProviderProps } from '../../@types/types';
+import { SquareCardData, ContextProviderProps } from '../../@types/types';
 
 import { pokemonClient } from '../../clients/PokeNode';
 
@@ -10,7 +10,7 @@ import { listContext as Context } from './context';
 import { serializeToListContext } from '../../utils/serializzers';
 
 const ListProvider = ({ children }: ContextProviderProps) => {
-  const [solvedList, setSolvedList] = useState<CardData[]>([]);
+  const [solvedList, setSolvedList] = useState<SquareCardData[]>([]);
 
   const getByName = useCallback(async (list: string[]) => {
     const promises = list.map(async (name) =>
