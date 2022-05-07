@@ -7,8 +7,6 @@ const Container = tw.div`
 
   2xl:grid-cols-3
   2xl:grid-rows-2
-  2xl:gap-y-0
-  2xl:gap-x-4
 `;
 
 const ImageSection = tw.section`
