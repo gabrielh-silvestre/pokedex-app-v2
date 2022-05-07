@@ -13,7 +13,11 @@ function TypeList({ types }: ITypeListProps) {
 
       <TypesContainer $typesNumber={types.length}>
         {types.map((type) => (
-          <SlimCard key={`type-${type}`} title={type} />
+          <SlimCard
+            key={`type-${type}`}
+            link={{ href: `/type/${type}` }}
+            title={type}
+          />
         ))}
       </TypesContainer>
     </Container>

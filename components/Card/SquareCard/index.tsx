@@ -42,7 +42,11 @@ function SquareCardComponent({ id, name, types, sprites }: SquareCardData) {
 
         <TypesContainer>
           {types.map(({ type }) => (
-            <SlimCard key={type.name} title={type.name} />
+            <SlimCard
+              key={type.name}
+              link={{ href: `/type/${type.name}` }}
+              title={type.name}
+            />
           ))}
         </TypesContainer>
       </ContentContainer>
