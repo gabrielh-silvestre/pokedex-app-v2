@@ -8,7 +8,9 @@ import { SquareCardMemo } from '../../Card/SquareCard';
 
 import { useAuth } from '../../../src/contexts/AuthContext';
 import { listContext } from '../../../src/contexts/ListContext/context';
+
 import { FavoriteProvider } from '../../../src/contexts/FavoriteContext';
+import { LoadingDots } from '../../Loadings/LoadingDots';
 
 function InfiniteList() {
   const [pokemonList, setPokemonList] = useState<string[]>([]);
@@ -50,9 +52,9 @@ function InfiniteList() {
       next={() => {
         increaseLimit();
       }}
-      scrollThreshold={0.9}
+      scrollThreshold={0.8}
       hasMore={true}
-      loader={<div>Loading...</div>}
+      loader={<LoadingDots />}
       endMessage={<p>It is all</p>}
       className="container z-0 scroll-hidden sm:grid sm:grid-cols-2 sm:gap-x-4 lg:grid-cols-3 2xl:grid-cols-4"
     >

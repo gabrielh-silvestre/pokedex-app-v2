@@ -4,7 +4,9 @@ import { SquareCard } from '../../Card/SquareCard';
 
 import { useAuth } from '../../../src/contexts/AuthContext';
 import { listContext } from '../../../src/contexts/ListContext/context';
+
 import { FavoriteProvider } from '../../../src/contexts/FavoriteContext';
+import { LoadingSquareCard } from '../../Loadings/LoadingSquareCard';
 
 import { Container } from './styles';
 
@@ -13,23 +15,31 @@ interface IStaticListProps {
   species?: boolean;
 }
 
-function StaticList({ list, species }: IStaticListProps) {
-  const { solvedList, getByName, getBySpecie } = useContext(listContext);
+function StaticList({ list }: IStaticListProps) {
+  const { solvedList, loading, getByName } = useContext(listContext);
   const { user } = useAuth();
 
+  const loadingList = Array.from({ length: 4 }, (_, i) => (
+    <LoadingSquareCard key={i} />
+  ));
+
   useEffect(() => {
-    species ? getBySpecie(list) : getByName(list);
+    getByName(list);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [list]);
 
   return (
     <Container>
-      <FavoriteProvider user={user}>
-        {solvedList.map((p) => (
-          <SquareCard key={p.name} {...p} />
-        ))}
-      </FavoriteProvider>
+      {loading ? (
+        loadingList.map((loadingCard) => loadingCard)
+      ) : (
+        <FavoriteProvider user={user}>
+          {solvedList.map((p) => (
+            <SquareCard key={p.name} {...p} />
+          ))}
+        </FavoriteProvider>
+      )}
     </Container>
   );
 }

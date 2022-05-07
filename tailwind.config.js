@@ -18,6 +18,10 @@ module.exports = {
       screens: {
         '2xl': '1400px',
       },
+      animation: {
+        bounce200: 'bounce 1s infinite 200ms',
+        bounce400: 'bounce 1s infinite 400ms',
+      },
     },
   },
   plugins: [],

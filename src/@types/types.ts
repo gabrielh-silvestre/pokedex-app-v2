@@ -14,6 +14,7 @@ type ContextProviderProps = {
 };
 
 type ListContext = {
+  loading: boolean;
   solvedList: SquareCardData[];
   getByName(list: string[]): Promise<void>;
   getBySpecie(list: string[]): Promise<void>;

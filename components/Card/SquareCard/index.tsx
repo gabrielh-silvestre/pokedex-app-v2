@@ -24,16 +24,16 @@ import NotFoundPic from '../../../public/not_found.png';
 function SquareCardComponent({ id, name, types, sprites }: SquareCardData) {
   return (
     <Container>
-      <ImageContainer>
-        <Link passHref href={`/pokemon/${name}`}>
+      <Link passHref href={`/pokemon/${name}`}>
+        <ImageContainer>
           <Image
             src={sprites.other['official-artwork'].front_default || NotFoundPic}
             alt={name}
             width={100}
             height={100}
           />
-        </Link>
-      </ImageContainer>
+        </ImageContainer>
+      </Link>
 
       <ContentContainer>
         <PokemonID>Nº {id}</PokemonID>
@@ -42,7 +42,11 @@ function SquareCardComponent({ id, name, types, sprites }: SquareCardData) {
 
         <TypesContainer>
           {types.map(({ type }) => (
-            <SlimCard key={type.name} title={type.name} />
+            <SlimCard
+              key={type.name}
+              link={{ href: `/type/${type.name}` }}
+              title={type.name}
+            />
           ))}
         </TypesContainer>
       </ContentContainer>
