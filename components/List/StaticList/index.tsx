@@ -6,7 +6,7 @@ import { useAuth } from '../../../src/contexts/AuthContext';
 import { listContext } from '../../../src/contexts/ListContext/context';
 
 import { FavoriteProvider } from '../../../src/contexts/FavoriteContext';
-import { LoadingSquareCard } from '../../Card/LoadingSquareCard';
+import { LoadingSquareCard } from '../../Loadings/LoadingSquareCard';
 
 import { Container } from './styles';
 
