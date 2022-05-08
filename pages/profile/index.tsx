@@ -1,6 +1,7 @@
 import { NextPage } from 'next';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 import { useAuth } from '../../src/contexts/AuthContext';
 
@@ -11,7 +12,15 @@ const Profile: NextPage = () => {
   const handleSignOut = () => {
     signOut();
     push('/');
-  }
+  };
+
+  useEffect(() => {
+    if (!user) {
+      push('/login');
+    }
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
