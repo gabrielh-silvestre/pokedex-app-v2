@@ -22,6 +22,7 @@ type ListContext = {
 
 type AuthContext = {
   user: User | null | undefined;
+  loading: boolean;
   signInWithGithub: any;
   signOut: any;
 };
