@@ -17,7 +17,7 @@ const useAuth = () => {
 };
 
 const AuthProvider = ({ children }: ContextProviderProps) => {
-  const [user] = useAuthState(auth);
+  const [user, loading] = useAuthState(auth);
   const [signInWithGithub] = useSignInWithGithub(auth);
 
   const signIn = useCallback(async () => {
@@ -45,6 +45,7 @@ const AuthProvider = ({ children }: ContextProviderProps) => {
 
   const context = {
     user,
+    loading,
     signInWithGithub,
     signOut,
   };
