@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 import { useAuth } from '../../src/contexts/AuthContext';
 
 const Profile: NextPage = () => {
-  const { user, signOut } = useAuth();
+  const { user, loading, signOut } = useAuth();
   const { push } = useRouter();
 
   const handleSignOut = () => {
@@ -15,11 +15,11 @@ const Profile: NextPage = () => {
   };
 
   useEffect(() => {
-    if (!user) {
+    if (!loading && !user) {
       push('/login');
     }
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
