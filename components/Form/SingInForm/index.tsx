@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import React from 'react';
 
 import { AiFillGithub } from 'react-icons/ai';
@@ -9,13 +10,16 @@ import { AuthButton, Container, ContentContainer } from './style';
 
 function SingInForm() {
   const { signInWithGithub } = useAuth();
+  const { push } = useRouter();
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
   };
 
   const signIn = () => {
-    signInWithGithub();
+    signInWithGithub().then(() => {
+      push('/');
+    });
   };
 
   return (
