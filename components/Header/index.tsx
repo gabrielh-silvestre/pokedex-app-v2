@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { GiBugNet } from 'react-icons/gi';
 
 import { ProfileLink } from '../Links/ProfileLink';
+import { FavoriteLink } from '../Links/FavoriteLink';
 
 import {
   Container,
@@ -15,7 +16,6 @@ import {
 } from './styles';
 
 import PokeBallLogo from '../../public/pokeball.png';
-import { FavoriteLink } from '../Links/FavoriteLink';
 
 function Header() {
   return (
