@@ -27,8 +27,11 @@ const AuthProvider = ({ children }: ContextProviderProps) => {
         doc(db, 'trainers', uid)
       );
 
-      if (!userAlreadyExists) {
-        setDoc(doc(db, 'trainers', uid), new Trainer(displayName, uid));
+      if (!userAlreadyExists.data()) {
+        const newTrainer = new Trainer(displayName, uid);
+        setDoc(doc(db, 'trainers', uid), {
+          ...newTrainer,
+        });
       }
     }
   }, [user]);
