@@ -1,34 +1,78 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Pokedex App v2
+O Pokedex App v2 é a versão melhorada do meu primeiro projeto em Rect.js, foi construída na intenção de praticar a criação de um projeto Full-Stack utilizando o Back-end como serviço (_BaaS_).
 
-## Getting Started
+## Table de Conteúdos
 
-First, run the development server:
+- [Visão geral](#visão-geral)
+  - [O desafio](#o-desafio)
+  - [Imagens](#imagens)
+  - [Links](#links)
+- [Meu processo](#meu-processo)
+  - [Construído com](#construído-com)
+  - [O que aprendi](#o-que-aprendi)
+  - [Recursos úteis](#recursos-úteis)
+- [Autor](#autor)
 
-```bash
-npm run dev
-# or
-yarn dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Visão geral
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### O desafio
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Esse projeto foi pensado para praticar e aprofundar meus conhecimento no Next.js, utilizando esse Framework não apenas como ferramenta para o Front-end, mas também para o Back-end.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Apesar de ser uma aplicação Full-Stack, ela não possui Back-end próprio, ao invés disso utiliza os serviços do Firebase. Optei por esse caminho com o objetivo de acelerar o desenvolvimento do projeto e poder _"brincar"_ com uma nova ferramenta.
 
-## Learn More
+__Os usuários devem ser capaz de?__
+- Autenticar-se
+- Visualizar pokemons com scroll infinito
+- Buscar pokemons por tipo
+- Visualizar os detalhes de cada pokemon
+- Salvar seus pokemons favoritos
 
-To learn more about Next.js, take a look at the following resources:
+### Imagens
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<small>Página principal</small>
+![](./assets/1_explore.png)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+<small>Busca por tipo</small>
+![](./assets/3_types.png)
 
-## Deploy on Vercel
+<small>Pokemons por tipo</small>
+![](./assets/2_per_type.png)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+<small>Detalhes dos pokemons</small>
+![](./assets/4_detail.png)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Links
+
+- Site online: https://pokedex-app-v2-liart.vercel.app
+
+
+## Meu processo
+
+### Construído com
+
+- TypeScript
+- Rect.js
+- Next.js
+- Context API
+- React Hooks
+- Styled-Components
+- Tailwind CSS
+- Firebase - _FireStore_ e _Auth_
+
+### O que aprendi
+
+Nesse projeto pude aprofundar meus conhecimentos sobre Next.js, mais especificamente em relação as diferentes gerações de páginas, além disso consegui aprender do zero uma nova ferramente, o Firebase no caso.
+
+
+### Recursos úteis
+
+- [RocketSeat - Next do zero](https://www.youtube.com/watch?v=2LS6rP3ykJk&t=3595s)
+- [Documentação Next](https://nextjs.org)
+- [Documentação Firebase](https://firebase.google.com/docs?authuser=0&hl=pt)
+
+## Autor
+
+- LinkedIn - [Gabriel Silvestre](https://www.linkedin.com/in/gabrielh-silvestre/)
+- DevTo - [Gabriel_Silvestre](https://dev.to/gabrielhsilvestre)
